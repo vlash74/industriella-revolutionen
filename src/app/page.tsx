@@ -1,19 +1,39 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import {
   getShuffledQuestions,
   type QuizQuestion,
 } from "@/data/quizQuestions";
-import {
-  getScores,
-  saveScore,
-  getQuestionHistory,
-  saveQuestionResult,
-  type SavedScore,
-} from "@/lib/quizStorage";
+
+export interface SavedScore {
+  date: string;
+  score: number;
+  total: number;
+}
+
+async function fetchProgress(): Promise<SavedScore[]> {
+  const res = await fetch("/api/quiz/progress", {
+    credentials: "include",
+    cache: "no-store",
+    headers: { "Cache-Control": "no-cache" },
+  });
+  const data = await res.json();
+  return Array.isArray(data.scores) ? data.scores : [];
+}
+
+async function fetchQuestionHistory(questionId: string): Promise<boolean[]> {
+  const res = await fetch(`/api/quiz/question/${questionId}`, {
+    credentials: "include",
+  });
+  const data = await res.json();
+  return Array.isArray(data.history) ? data.history : [];
+}
 
 export default function QuizPage() {
+  const [userChecked, setUserChecked] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
+  const [nameInput, setNameInput] = useState("");
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
@@ -24,18 +44,54 @@ export default function QuizPage() {
   const [showTip, setShowTip] = useState(false);
   const [scores, setScores] = useState<SavedScore[]>([]);
   const [currentQuestionHistory, setCurrentQuestionHistory] = useState<boolean[]>([]);
+  const questionIdRef = useRef<string | undefined>(undefined);
 
   useEffect(() => {
-    setScores(getScores());
+    let cancelled = false;
+    (async () => {
+      const res = await fetch("/api/quiz/whoami", { credentials: "include" });
+      const data = await res.json();
+      if (cancelled) return;
+      setUserId(data.userId ?? null);
+      setUserChecked(true);
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, []);
+
+  useEffect(() => {
+    if (!userId || started) return;
+    let cancelled = false;
+    fetchProgress()
+      .then((list) => {
+        if (cancelled) return;
+        setScores((prev) =>
+          list.length > 0 ? list : prev.length > 0 ? prev : list
+        );
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [userId, started]);
 
   const current = questions[currentIndex];
   const questionId = current?.id;
 
   useEffect(() => {
-    if (questionId) {
-      setCurrentQuestionHistory(getQuestionHistory(questionId));
-    }
+    questionIdRef.current = questionId;
+  }, [questionId]);
+
+  useEffect(() => {
+    if (!questionId) return;
+    let cancelled = false;
+    fetchQuestionHistory(questionId).then((history) => {
+      if (!cancelled) setCurrentQuestionHistory(history);
+    });
+    return () => {
+      cancelled = true;
+    };
   }, [questionId]);
 
   const startQuiz = useCallback(() => {
@@ -60,32 +116,113 @@ export default function QuizPage() {
     setShowTip(false);
   }, []);
 
+  const handleSetName = useCallback(async (e: React.FormEvent) => {
+    e.preventDefault();
+    const name = nameInput.trim();
+    if (!name) return;
+    const res = await fetch("/api/quiz/user", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name }),
+      credentials: "include",
+    });
+    const data = await res.json();
+    if (data.userId) {
+      setUserId(data.userId);
+      const list = await fetchProgress();
+      setScores(list);
+    }
+  }, [nameInput]);
+
   const isLast = currentIndex === questions.length - 1;
 
-  const handleAnswer = (answer: string) => {
-    if (showResult) return;
+  const handleAnswer = useCallback(async (answer: string) => {
+    if (!current || showResult) return;
     const correct = answer === current.correctAnswer;
     setSelected(answer);
     setShowResult(true);
     if (correct) {
       setScore((s) => s + 1);
     }
-    const updated = saveQuestionResult(current.id, correct);
-    setCurrentQuestionHistory(updated);
-  };
+    setCurrentQuestionHistory((prev) => [correct, ...prev].slice(0, 5));
+    const answeredQuestionId = current.id;
+    try {
+      const res = await fetch("/api/quiz/answer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId: answeredQuestionId, correct }),
+        credentials: "include",
+      });
+      const data = await res.json();
+      if (Array.isArray(data.history) && questionIdRef.current === answeredQuestionId) {
+        setCurrentQuestionHistory(data.history);
+      }
+    } catch {}
+  }, [current, showResult]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(async () => {
     if (!isLast) {
       setCurrentIndex((i) => i + 1);
       setSelected(null);
       setShowResult(false);
       setShowTip(false);
     } else {
-      const updated = saveScore(score, questions.length);
-      setScores(updated);
+      try {
+        const res = await fetch("/api/quiz/score", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ score, total: questions.length }),
+          credentials: "include",
+        });
+        const data = await res.json();
+        if (Array.isArray(data.scores)) {
+          setScores(data.scores);
+        }
+      } catch {}
       setShowFinalResult(true);
     }
-  };
+  }, [isLast, score, questions.length]);
+
+  if (!userChecked) {
+    return (
+      <main className="min-h-screen flex items-center justify-center p-6 bg-[var(--bg)]">
+        <p className="text-[var(--text-muted)]">Laddar...</p>
+      </main>
+    );
+  }
+
+  if (userId === null) {
+    return (
+      <main className="min-h-screen flex flex-col items-center justify-center p-6 bg-[var(--bg)]">
+        <div className="max-w-lg w-full rounded-2xl bg-[var(--card)] border border-white/10 p-8 shadow-xl text-center">
+          <h1 className="text-xl font-bold text-white mb-2">
+            Industriella revolutionen
+          </h1>
+          <p className="text-sm text-[var(--text-muted)] mb-6">
+            Ange ditt namn eller en kod så sparas din progress i molnet och
+            fungerar på alla enheter.
+          </p>
+          <form onSubmit={handleSetName} className="flex flex-col gap-3">
+            <input
+              type="text"
+              value={nameInput}
+              onChange={(e) => setNameInput(e.target.value)}
+              placeholder="T.ex. Erik eller 8C"
+              className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)]"
+              maxLength={50}
+              autoFocus
+            />
+            <button
+              type="submit"
+              className="w-full py-3 px-6 rounded-xl bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold transition"
+            >
+              Spara och starta
+            </button>
+          </form>
+        </div>
+      </main>
+    );
+  }
 
   if (showFinalResult && questions.length > 0) {
     const percent = Math.round((score / questions.length) * 100);
@@ -101,12 +238,17 @@ export default function QuizPage() {
             <div className="mb-6 text-left rounded-xl bg-white/5 border border-white/10 p-4">
               <p className="text-sm font-medium text-white mb-2">Din progress</p>
               <ul className="text-sm text-[var(--text-muted)] space-y-1">
-                {scores.slice(0, 5).map((s, i) => {
+                {[...scores]
+                  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                  .slice(0, 10)
+                  .map((s, i) => {
                   const p = Math.round((s.score / s.total) * 100);
                   const date = new Date(s.date);
-                  const dateStr = date.toLocaleDateString("sv-SE", {
+                  const dateStr = date.toLocaleString("sv-SE", {
                     day: "numeric",
                     month: "short",
+                    hour: "2-digit",
+                    minute: "2-digit",
                   });
                   return (
                     <li key={s.date + i}>
@@ -148,27 +290,38 @@ export default function QuizPage() {
           </p>
           <p className="text-sm text-[var(--text-muted)] mb-6">
             Frågorna och svarsalternativen roteras varje gång du startar – så du
-            tränar i olika ordning.
+            tränar i olika ordning. Progress sparas i molnet.
           </p>
-          {scores.length > 0 && (
+          {userId && (
             <div className="mb-6 text-left rounded-xl bg-white/5 border border-white/10 p-4">
               <p className="text-sm font-medium text-white mb-2">Din progress</p>
-              <ul className="text-sm text-[var(--text-muted)] space-y-1">
-                {scores.slice(0, 10).map((s, i) => {
-                  const p = Math.round((s.score / s.total) * 100);
-                  const date = new Date(s.date);
-                  const dateStr = date.toLocaleDateString("sv-SE", {
-                    day: "numeric",
-                    month: "short",
-                    year: date.getFullYear() !== new Date().getFullYear() ? "numeric" : undefined,
-                  });
-                  return (
-                    <li key={s.date + i}>
-                      {s.score}/{s.total} ({p} %) – {dateStr}
-                    </li>
-                  );
-                })}
-              </ul>
+              {scores.length > 0 ? (
+                <ul className="text-sm text-[var(--text-muted)] space-y-1">
+                  {[...scores]
+                    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                    .slice(0, 10)
+                    .map((s, i) => {
+                    const p = Math.round((s.score / s.total) * 100);
+                    const date = new Date(s.date);
+                    const dateStr = date.toLocaleString("sv-SE", {
+                      day: "numeric",
+                      month: "short",
+                      year: date.getFullYear() !== new Date().getFullYear() ? "numeric" : undefined,
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    });
+                    return (
+                      <li key={s.date + i}>
+                        {s.score}/{s.total} ({p} %) – {dateStr}
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                <p className="text-sm text-[var(--text-muted)]">
+                  Ingen sparad quiz än. Avsluta ett quiz (klicka &quot;Se resultat&quot;) för att spara resultat här.
+                </p>
+              )}
             </div>
           )}
           <button
@@ -188,7 +341,6 @@ export default function QuizPage() {
   return (
     <main className="min-h-screen flex flex-col p-4 sm:p-6 md:p-8 bg-[var(--bg)]">
       <div className="max-w-2xl w-full mx-auto flex-1 flex flex-col">
-        {/* Starta om */}
         <div className="mb-4 flex justify-end">
           <button
             type="button"
@@ -198,7 +350,6 @@ export default function QuizPage() {
             Starta om
           </button>
         </div>
-        {/* Progress */}
         <div className="mb-6">
           <div className="flex justify-between text-sm text-[var(--text-muted)] mb-2">
             <span>Fråga {currentIndex + 1} av {questions.length}</span>
@@ -214,7 +365,6 @@ export default function QuizPage() {
           </div>
         </div>
 
-        {/* Question */}
         <div className="flex-1 rounded-2xl bg-[var(--card)] border border-white/10 p-6 sm:p-8 shadow-xl mb-6">
           <h2 className="text-lg sm:text-xl font-semibold text-white mb-6 leading-snug">
             {current.question}
@@ -283,7 +433,6 @@ export default function QuizPage() {
           )}
         </div>
 
-        {/* Next / Avsluta */}
         {showResult && (
           <button
             type="button"
