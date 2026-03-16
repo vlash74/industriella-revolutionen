@@ -1,11 +1,17 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import {
-  quizQuestions,
   getShuffledQuestions,
   type QuizQuestion,
 } from "@/data/quizQuestions";
+import {
+  getScores,
+  saveScore,
+  getQuestionHistory,
+  saveQuestionResult,
+  type SavedScore,
+} from "@/lib/quizStorage";
 
 export default function QuizPage() {
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
@@ -16,6 +22,21 @@ export default function QuizPage() {
   const [started, setStarted] = useState(false);
   const [showFinalResult, setShowFinalResult] = useState(false);
   const [showTip, setShowTip] = useState(false);
+  const [scores, setScores] = useState<SavedScore[]>([]);
+  const [currentQuestionHistory, setCurrentQuestionHistory] = useState<boolean[]>([]);
+
+  useEffect(() => {
+    setScores(getScores());
+  }, []);
+
+  const current = questions[currentIndex];
+  const questionId = current?.id;
+
+  useEffect(() => {
+    if (questionId) {
+      setCurrentQuestionHistory(getQuestionHistory(questionId));
+    }
+  }, [questionId]);
 
   const startQuiz = useCallback(() => {
     setQuestions(getShuffledQuestions());
@@ -39,16 +60,18 @@ export default function QuizPage() {
     setShowTip(false);
   }, []);
 
-  const current = questions[currentIndex];
   const isLast = currentIndex === questions.length - 1;
 
   const handleAnswer = (answer: string) => {
     if (showResult) return;
+    const correct = answer === current.correctAnswer;
     setSelected(answer);
     setShowResult(true);
-    if (answer === current.correctAnswer) {
+    if (correct) {
       setScore((s) => s + 1);
     }
+    const updated = saveQuestionResult(current.id, correct);
+    setCurrentQuestionHistory(updated);
   };
 
   const handleNext = () => {
@@ -58,6 +81,8 @@ export default function QuizPage() {
       setShowResult(false);
       setShowTip(false);
     } else {
+      const updated = saveScore(score, questions.length);
+      setScores(updated);
       setShowFinalResult(true);
     }
   };
@@ -71,7 +96,27 @@ export default function QuizPage() {
           <p className="text-4xl font-bold text-[var(--accent)] mb-2">
             {score} / {questions.length}
           </p>
-          <p className="text-[var(--text-muted)] mb-8">{percent} % rätt</p>
+          <p className="text-[var(--text-muted)] mb-4">{percent} % rätt</p>
+          {scores.length > 0 && (
+            <div className="mb-6 text-left rounded-xl bg-white/5 border border-white/10 p-4">
+              <p className="text-sm font-medium text-white mb-2">Din progress</p>
+              <ul className="text-sm text-[var(--text-muted)] space-y-1">
+                {scores.slice(0, 5).map((s, i) => {
+                  const p = Math.round((s.score / s.total) * 100);
+                  const date = new Date(s.date);
+                  const dateStr = date.toLocaleDateString("sv-SE", {
+                    day: "numeric",
+                    month: "short",
+                  });
+                  return (
+                    <li key={s.date + i}>
+                      {s.score}/{s.total} ({p} %) – {dateStr}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
           <button
             type="button"
             onClick={startQuiz}
@@ -101,10 +146,31 @@ export default function QuizPage() {
           <p className="text-[var(--text-muted)] mb-6">
             Instuderingsquiz • Sol Nova 8, s. 67–108
           </p>
-          <p className="text-sm text-[var(--text-muted)] mb-8">
+          <p className="text-sm text-[var(--text-muted)] mb-6">
             Frågorna och svarsalternativen roteras varje gång du startar – så du
             tränar i olika ordning.
           </p>
+          {scores.length > 0 && (
+            <div className="mb-6 text-left rounded-xl bg-white/5 border border-white/10 p-4">
+              <p className="text-sm font-medium text-white mb-2">Din progress</p>
+              <ul className="text-sm text-[var(--text-muted)] space-y-1">
+                {scores.slice(0, 10).map((s, i) => {
+                  const p = Math.round((s.score / s.total) * 100);
+                  const date = new Date(s.date);
+                  const dateStr = date.toLocaleDateString("sv-SE", {
+                    day: "numeric",
+                    month: "short",
+                    year: date.getFullYear() !== new Date().getFullYear() ? "numeric" : undefined,
+                  });
+                  return (
+                    <li key={s.date + i}>
+                      {s.score}/{s.total} ({p} %) – {dateStr}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
           <button
             type="button"
             onClick={startQuiz}
@@ -199,6 +265,22 @@ export default function QuizPage() {
               );
             })}
           </ul>
+          {currentQuestionHistory.length > 0 && (
+            <p className="mt-4 text-sm text-[var(--text-muted)]">
+              Senaste gångerna:{" "}
+              <span className="inline-flex gap-1" aria-hidden>
+                {currentQuestionHistory.map((correct, i) => (
+                  <span
+                    key={i}
+                    className={correct ? "text-green-400" : "text-red-400"}
+                    title={correct ? "Rätt" : "Fel"}
+                  >
+                    {correct ? "✓" : "✗"}
+                  </span>
+                ))}
+              </span>
+            </p>
+          )}
         </div>
 
         {/* Next / Avsluta */}
