@@ -306,7 +306,7 @@ export default function QuizPage() {
           </button>
           <button
             type="button"
-            onClick={goToStart}
+            onClick={() => goToStart()}
             className="mt-3 w-full py-3 px-6 rounded-xl border border-white/20 text-[var(--text-muted)] hover:text-white hover:border-white/40 transition"
           >
             Starta om
