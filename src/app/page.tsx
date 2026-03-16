@@ -5,6 +5,7 @@ import {
   getShuffledQuestions,
   type QuizQuestion,
 } from "@/data/quizQuestions";
+import type { QuizTopic } from "@/lib/redis";
 
 export interface SavedScore {
   date: string;
@@ -12,8 +13,8 @@ export interface SavedScore {
   total: number;
 }
 
-async function fetchProgress(): Promise<SavedScore[]> {
-  const res = await fetch("/api/quiz/progress", {
+async function fetchProgress(topic: QuizTopic): Promise<SavedScore[]> {
+  const res = await fetch(`/api/quiz/progress?topic=${topic}`, {
     credentials: "include",
     cache: "no-store",
     headers: { "Cache-Control": "no-cache" },
@@ -22,10 +23,14 @@ async function fetchProgress(): Promise<SavedScore[]> {
   return Array.isArray(data.scores) ? data.scores : [];
 }
 
-async function fetchQuestionHistory(questionId: string): Promise<boolean[]> {
-  const res = await fetch(`/api/quiz/question/${questionId}`, {
-    credentials: "include",
-  });
+async function fetchQuestionHistory(
+  questionId: string,
+  topic: QuizTopic
+): Promise<boolean[]> {
+  const res = await fetch(
+    `/api/quiz/question/${questionId}?topic=${topic}`,
+    { credentials: "include" }
+  );
   const data = await res.json();
   return Array.isArray(data.history) ? data.history : [];
 }
@@ -34,6 +39,7 @@ export default function QuizPage() {
   const [userChecked, setUserChecked] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
   const [nameInput, setNameInput] = useState("");
+  const [topic, setTopic] = useState<QuizTopic>("industriella");
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
@@ -63,7 +69,7 @@ export default function QuizPage() {
   useEffect(() => {
     if (!userId || started) return;
     let cancelled = false;
-    fetchProgress()
+    fetchProgress(topic)
       .then((list) => {
         if (cancelled) return;
         setScores((prev) =>
@@ -74,7 +80,7 @@ export default function QuizPage() {
     return () => {
       cancelled = true;
     };
-  }, [userId, started]);
+  }, [userId, started, topic]);
 
   const current = questions[currentIndex];
   const questionId = current?.id;
@@ -86,16 +92,16 @@ export default function QuizPage() {
   useEffect(() => {
     if (!questionId) return;
     let cancelled = false;
-    fetchQuestionHistory(questionId).then((history) => {
+    fetchQuestionHistory(questionId, topic).then((history) => {
       if (!cancelled) setCurrentQuestionHistory(history);
     });
     return () => {
       cancelled = true;
     };
-  }, [questionId]);
+  }, [questionId, topic]);
 
   const startQuiz = useCallback(() => {
-    setQuestions(getShuffledQuestions());
+    setQuestions(getShuffledQuestions(topic));
     setCurrentIndex(0);
     setSelected(null);
     setShowResult(false);
@@ -103,7 +109,7 @@ export default function QuizPage() {
     setStarted(true);
     setShowFinalResult(false);
     setShowTip(false);
-  }, []);
+  }, [topic]);
 
   const goToStart = useCallback(() => {
     setQuestions([]);
@@ -129,10 +135,10 @@ export default function QuizPage() {
     const data = await res.json();
     if (data.userId) {
       setUserId(data.userId);
-      const list = await fetchProgress();
+      const list = await fetchProgress(topic);
       setScores(list);
     }
-  }, [nameInput]);
+  }, [nameInput, topic]);
 
   const isLast = currentIndex === questions.length - 1;
 
@@ -150,7 +156,11 @@ export default function QuizPage() {
       const res = await fetch("/api/quiz/answer", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId: answeredQuestionId, correct }),
+        body: JSON.stringify({
+          questionId: answeredQuestionId,
+          correct,
+          topic,
+        }),
         credentials: "include",
       });
       const data = await res.json();
@@ -158,7 +168,7 @@ export default function QuizPage() {
         setCurrentQuestionHistory(data.history);
       }
     } catch {}
-  }, [current, showResult]);
+  }, [current, showResult, topic]);
 
   const handleNext = useCallback(async () => {
     if (!isLast) {
@@ -171,7 +181,11 @@ export default function QuizPage() {
         const res = await fetch("/api/quiz/score", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ score, total: questions.length }),
+          body: JSON.stringify({
+          score,
+          total: questions.length,
+          topic,
+        }),
           credentials: "include",
         });
         const data = await res.json();
@@ -181,7 +195,7 @@ export default function QuizPage() {
       } catch {}
       setShowFinalResult(true);
     }
-  }, [isLast, score, questions.length]);
+  }, [isLast, score, questions.length, topic]);
 
   if (!userChecked) {
     return (
@@ -196,11 +210,11 @@ export default function QuizPage() {
       <main className="min-h-screen flex flex-col items-center justify-center p-6 bg-[var(--bg)]">
         <div className="max-w-lg w-full rounded-2xl bg-[var(--card)] border border-white/10 p-8 shadow-xl text-center">
           <h1 className="text-xl font-bold text-white mb-2">
-            Industriella revolutionen
+            Instuderingsquiz
           </h1>
           <p className="text-sm text-[var(--text-muted)] mb-6">
-            Ange ditt namn eller en kod så sparas din progress i molnet och
-            fungerar på alla enheter.
+            Ange ditt namn eller en kod så sparas din progress per ämne i molnet
+            och fungerar på alla enheter.
           </p>
           <form onSubmit={handleSetName} className="flex flex-col gap-3">
             <input
@@ -279,18 +293,50 @@ export default function QuizPage() {
   }
 
   if (!started) {
+    const topicTitle =
+      topic === "nationalism"
+        ? "Nationalism & imperialism"
+        : "Industriella revolutionen";
+    const topicSub =
+      topic === "nationalism"
+        ? "Sol Nova 8, nationalism s. 110–127, imperialism s. 128–155"
+        : "Sol Nova 8, s. 67–108";
     return (
       <main className="min-h-screen flex flex-col items-center justify-center p-6 bg-[var(--bg)]">
         <div className="max-w-lg w-full rounded-2xl bg-[var(--card)] border border-white/10 p-8 shadow-xl text-center">
           <h1 className="text-2xl font-bold text-white mb-2">
-            Industriella revolutionen
+            Instuderingsquiz
           </h1>
-          <p className="text-[var(--text-muted)] mb-6">
-            Instuderingsquiz • Sol Nova 8, s. 67–108
-          </p>
+          <p className="text-sm text-[var(--text-muted)] mb-4">Välj ämne</p>
+          <div className="flex gap-2 mb-6">
+            <button
+              type="button"
+              onClick={() => setTopic("industriella")}
+              className={`flex-1 py-3 px-4 rounded-xl border-2 text-sm font-medium transition ${
+                topic === "industriella"
+                  ? "border-[var(--accent)] bg-[var(--accent)]/20 text-white"
+                  : "border-white/20 text-[var(--text-muted)] hover:border-white/40"
+              }`}
+            >
+              Industriella revolutionen
+            </button>
+            <button
+              type="button"
+              onClick={() => setTopic("nationalism")}
+              className={`flex-1 py-3 px-4 rounded-xl border-2 text-sm font-medium transition ${
+                topic === "nationalism"
+                  ? "border-[var(--accent)] bg-[var(--accent)]/20 text-white"
+                  : "border-white/20 text-[var(--text-muted)] hover:border-white/40"
+              }`}
+            >
+              Nationalism & imperialism
+            </button>
+          </div>
+          <p className="text-[var(--text-muted)] mb-1">{topicTitle}</p>
+          <p className="text-sm text-[var(--text-muted)] mb-6">{topicSub}</p>
           <p className="text-sm text-[var(--text-muted)] mb-6">
             Frågorna och svarsalternativen roteras varje gång du startar – så du
-            tränar i olika ordning. Progress sparas i molnet.
+            tränar i olika ordning. Progress sparas per ämne i molnet.
           </p>
           {userId && (
             <div className="mb-6 text-left rounded-xl bg-white/5 border border-white/10 p-4">

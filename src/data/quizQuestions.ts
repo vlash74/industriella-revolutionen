@@ -4,6 +4,9 @@
  * Frågorna roteras/slumpas vid varje quiz-körning.
  */
 
+import type { QuizTopic } from "@/lib/redis";
+import { quizQuestionsNationalism } from "./quizQuestionsNationalism";
+
 export interface QuizQuestion {
   id: string;
   question: string;
@@ -946,9 +949,12 @@ export const quizQuestions: QuizQuestion[] = [
 /**
  * Slumpar ordning på frågor och på svarsalternativ.
  * Returnerar ny array; originaldata ändras inte.
+ * @param topic - "industriella" eller "nationalism"
  */
-export function getShuffledQuestions(): QuizQuestion[] {
-  const copied = [...quizQuestions];
+export function getShuffledQuestions(topic: QuizTopic): QuizQuestion[] {
+  const source =
+    topic === "nationalism" ? quizQuestionsNationalism : quizQuestions;
+  const copied = [...source];
   for (let i = copied.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [copied[i], copied[j]] = [copied[j], copied[i]];

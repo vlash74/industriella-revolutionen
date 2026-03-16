@@ -17,12 +17,18 @@ export function getRedisClient(): Redis | null {
   return redis;
 }
 
-export function scoresKey(userId: string): string {
-  return `${KEY_PREFIX}quiz:${userId}:scores`;
+export type QuizTopic = "industriella" | "nationalism";
+
+export function scoresKey(userId: string, topic: QuizTopic): string {
+  return `${KEY_PREFIX}quiz:${userId}:${topic}:scores`;
 }
 
-export function questionKey(userId: string, questionId: string): string {
-  return `${KEY_PREFIX}quiz:${userId}:q:${questionId}`;
+export function questionKey(
+  userId: string,
+  topic: QuizTopic,
+  questionId: string
+): string {
+  return `${KEY_PREFIX}quiz:${userId}:${topic}:q:${questionId}`;
 }
 
 const MAX_SCORES = 50;
@@ -34,11 +40,14 @@ export interface SavedScore {
   total: number;
 }
 
-export async function redisGetScores(userId: string): Promise<SavedScore[]> {
+export async function redisGetScores(
+  userId: string,
+  topic: QuizTopic
+): Promise<SavedScore[]> {
   const client = getRedisClient();
   if (!client) return [];
   try {
-    const raw = await client.get(scoresKey(userId));
+    const raw = await client.get(scoresKey(userId, topic));
     if (raw == null) return [];
     const parsed: unknown = Array.isArray(raw) ? raw : JSON.parse(String(raw));
     return Array.isArray(parsed) ? (parsed as SavedScore[]) : [];
@@ -49,31 +58,33 @@ export async function redisGetScores(userId: string): Promise<SavedScore[]> {
 
 export async function redisSaveScore(
   userId: string,
+  topic: QuizTopic,
   score: number,
   total: number
 ): Promise<SavedScore[]> {
   const client = getRedisClient();
   if (!client) return [];
-  const scores = await redisGetScores(userId);
+  const scores = await redisGetScores(userId, topic);
   const next: SavedScore = {
     date: new Date().toISOString(),
     score,
     total,
   };
   const updated = [next, ...scores].slice(0, MAX_SCORES);
-  await client.set(scoresKey(userId), JSON.stringify(updated));
+  await client.set(scoresKey(userId, topic), JSON.stringify(updated));
   return updated;
 }
 
 export async function redisGetQuestionHistory(
   userId: string,
+  topic: QuizTopic,
   questionId: string
 ): Promise<boolean[]> {
   const client = getRedisClient();
   if (!client) return [];
   try {
     const list = await client.lrange(
-      questionKey(userId, questionId),
+      questionKey(userId, topic, questionId),
       0,
       MAX_QUESTION_HISTORY - 1
     );
@@ -86,13 +97,14 @@ export async function redisGetQuestionHistory(
 
 export async function redisSaveQuestionResult(
   userId: string,
+  topic: QuizTopic,
   questionId: string,
   correct: boolean
 ): Promise<boolean[]> {
   const client = getRedisClient();
   if (!client) return [];
-  const key = questionKey(userId, questionId);
+  const key = questionKey(userId, topic, questionId);
   await client.lpush(key, correct ? "1" : "0");
   await client.ltrim(key, 0, MAX_QUESTION_HISTORY - 1);
-  return redisGetQuestionHistory(userId, questionId);
+  return redisGetQuestionHistory(userId, topic, questionId);
 }
