@@ -72,11 +72,9 @@ export default function QuizPage() {
     fetchProgress(topic)
       .then((list) => {
         if (cancelled) return;
-        setScores((prev) =>
-          list.length > 0 ? list : prev.length > 0 ? prev : list
-        );
+        setScores(Array.isArray(list) ? list : []);
       })
-      .catch(() => {});
+      .catch(() => setScores([]));
     return () => {
       cancelled = true;
     };
@@ -111,16 +109,42 @@ export default function QuizPage() {
     setShowTip(false);
   }, [topic]);
 
-  const goToStart = useCallback(() => {
-    setQuestions([]);
-    setCurrentIndex(0);
-    setSelected(null);
-    setShowResult(false);
-    setScore(0);
-    setStarted(false);
-    setShowFinalResult(false);
-    setShowTip(false);
-  }, []);
+  const goToStart = useCallback(
+    async (partialScore?: number, totalAnswered?: number) => {
+      if (
+        totalAnswered != null &&
+        totalAnswered > 0 &&
+        partialScore != null &&
+        userId
+      ) {
+        try {
+          const res = await fetch("/api/quiz/score", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              score: partialScore,
+              total: totalAnswered,
+              topic,
+            }),
+            credentials: "include",
+          });
+          const data = await res.json();
+          if (Array.isArray(data.scores)) setScores(data.scores);
+        } catch {
+          // fortsätt till startsidan även om sparandet misslyckas
+        }
+      }
+      setQuestions([]);
+      setCurrentIndex(0);
+      setSelected(null);
+      setShowResult(false);
+      setScore(0);
+      setStarted(false);
+      setShowFinalResult(false);
+      setShowTip(false);
+    },
+    [topic, userId]
+  );
 
   const handleSetName = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
@@ -365,7 +389,7 @@ export default function QuizPage() {
                 </ul>
               ) : (
                 <p className="text-sm text-[var(--text-muted)]">
-                  Ingen sparad quiz än. Avsluta ett quiz (klicka &quot;Se resultat&quot;) för att spara resultat här.
+                  Ingen sparad quiz än. Resultat sparas när du avslutar ett quiz (&quot;Se resultat&quot;) eller klickar &quot;Starta om&quot; under quizet.
                 </p>
               )}
             </div>
@@ -390,7 +414,7 @@ export default function QuizPage() {
         <div className="mb-4 flex justify-end">
           <button
             type="button"
-            onClick={goToStart}
+            onClick={() => goToStart(score, currentIndex)}
             className="text-sm text-[var(--text-muted)] hover:text-white underline transition"
           >
             Starta om
