@@ -9,6 +9,7 @@ export interface QuizQuestion {
   question: string;
   options: string[];
   correctAnswer: string;
+  tip?: string;
 }
 
 export const quizQuestions: QuizQuestion[] = [
@@ -23,6 +24,7 @@ export const quizQuestions: QuizQuestion[] = [
       "En ekonomisk recession",
     ],
     correctAnswer: "En snabb och genomgripande förändring av samhället",
+    tip: "Tänk på ordet revolution – det handlar om stor och snabb förändring, inte bara krig.",
   },
   {
     id: "nationalism",
@@ -34,6 +36,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Läran om jämställdhet",
     ],
     correctAnswer: "Tro på nationens betydelse och fosterlandskärlek",
+    tip: "Ordet nation är nyckeln – det handlar om känslor och tro kopplat till sitt land.",
   },
   {
     id: "imperialism",
@@ -45,6 +48,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Att införa demokrati",
     ],
     correctAnswer: "Att ett land utövar makt över andra länder eller folk",
+    tip: "Imperium = makt över andra. Tänk kolonier och erövring.",
   },
   {
     id: "socialdarwinism",
@@ -56,6 +60,7 @@ export const quizQuestions: QuizQuestion[] = [
       "En jordbruksmetod",
     ],
     correctAnswer: "Att man tillämpar idén om 'de starkaste överlever' på samhället och människogrupper",
+    tip: "Darwins idéer användes på samhället – tänk hur människogrupper kunde rättfärdiga överordning.",
   },
   {
     id: "survival",
@@ -67,6 +72,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Krig är nödvändigt",
     ],
     correctAnswer: "De som är mest anpassade överlever",
+    tip: "Engelska uttrycket – 'fittest' betyder mest anpassad, inte starkast i styrka.",
   },
   {
     id: "forlagssystem",
@@ -78,6 +84,7 @@ export const quizQuestions: QuizQuestion[] = [
       "En lag om fabriksarbete",
     ],
     correctAnswer: "En arbetsform där hemarbetare fick råmaterial och levererade färdiga varor tillbaka",
+    tip: "Förlag = den som gav ut arbete. Arbetet skedde hemma innan fabrikerna.",
   },
   {
     id: "kolonialism",
@@ -89,6 +96,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Avveckling av slaveri",
     ],
     correctAnswer: "Erövring och styre av andra territorier, ofta för att ta råvaror och sälja varor",
+    tip: "Kolonier = områden som styrdes av europeiska makter. Tänk råvaror och handel.",
   },
   {
     id: "scramble",
@@ -100,6 +108,7 @@ export const quizQuestions: QuizQuestion[] = [
       "En uppfinningstävling i Afrika",
     ],
     correctAnswer: "Europas makter tävlade om att erövra och styra delar av Afrika",
+    tip: "Scramble = kapplöpning. Vilka tävlade? Tänk Europas stormakter på 1800-talet.",
   },
   {
     id: "industriella_rev",
@@ -111,6 +120,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Införandet av allmän rösträtt",
     ],
     correctAnswer: "Övergången till fabriksproduktion, ångkraft och ny teknik från slutet av 1700-talet",
+    tip: "Det handlar om övergång från jordbruk till fabriker, ångmaskiner och ny teknik.",
   },
   {
     id: "urbanisering",
@@ -122,6 +132,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Att landet blir självförsörjande",
     ],
     correctAnswer: "Att allt fler människor flyttar till och bor i städer",
+    tip: "Urban = stad. Vad händer med befolkningen när industrin växer?",
   },
   {
     id: "sjuarskriget",
@@ -133,6 +144,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Både A och C – ett europeiskt krig med koloniala konflikter",
     ],
     correctAnswer: "Både A och C – ett europeiskt krig med koloniala konflikter",
+    tip: "Sju år = 1756–1763. Storbritannien mot Frankrike – och vem fick Indien?",
   },
   {
     id: "ravaror",
@@ -144,6 +156,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Arbetskraft i fabriker",
     ],
     correctAnswer: "Material som bearbetas till färdiga produkter",
+    tip: "Råvaror är det du behöver innan du tillverkar något – t.ex. ull, järnmalm, trä.",
   },
   {
     id: "global_handel",
@@ -155,6 +168,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Handel som styrs av kyrkan",
     ],
     correctAnswer: "Handel mellan länder över hela världen",
+    tip: "Global = världen. Handel över gränser och hav.",
   },
   {
     id: "handelshinder",
@@ -166,6 +180,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Fackföreningarnas krav",
     ],
     correctAnswer: "Tullar, lagar och regler som begränsar fri handel",
+    tip: "Hinder = något som stoppar eller begränsar. Tänk tullar och lagar.",
   },
   {
     id: "allmanning",
@@ -177,6 +192,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Privat ägd skog",
     ],
     correctAnswer: "Mark som alla bybor hade rätt att använda gemensamt",
+    tip: "Allmänning = gemensam mark, t.ex. för bete. Motsatsen till privat ägd.",
   },
   {
     id: "inhagnadsrorelsen",
@@ -188,6 +204,7 @@ export const quizQuestions: QuizQuestion[] = [
       "En religiös rörelse",
     ],
     correctAnswer: "Att allmänning och gemensam mark lades in och blev privat ägd",
+    tip: "Inhägnad = stänga in. Vad hände med den gemensamma marken i byarna?",
   },
   {
     id: "produktivitet",
@@ -199,6 +216,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Mängden råvaror",
     ],
     correctAnswer: "Hur mycket som produceras per arbetsinsats eller resurs",
+    tip: "Produktivitet = hur effektivt man arbetar. Mer output med samma insats.",
   },
   {
     id: "innovation",
@@ -210,6 +228,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Ett krig",
     ],
     correctAnswer: "En ny idé, metod eller produkt",
+    tip: "Innovation = något nytt – uppfinning, förbättring eller ny metod.",
   },
   {
     id: "massproduktion",
@@ -221,6 +240,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Handel mellan länder",
     ],
     correctAnswer: "Tillverkning av stora mängder likadana varor, ofta i fabriker",
+    tip: "Mass = stor mängd. Fabriker tillverkade många likadana saker.",
   },
   {
     id: "flygande_skytteln",
@@ -232,6 +252,7 @@ export const quizQuestions: QuizQuestion[] = [
       "En spinnmaskin – James Hargreaves",
     ],
     correctAnswer: "En uppfinning som snabbade på vävningen – John Kay 1733",
+    tip: "Skyttel används vid vävning. John Kay, 1733 – textilindustrin.",
   },
   {
     id: "spinning_jenny",
@@ -243,6 +264,7 @@ export const quizQuestions: QuizQuestion[] = [
       "En ångbåt – Robert Fulton",
     ],
     correctAnswer: "En spinnmaskin som kunde spinna många trådar samtidigt – James Hargreaves 1764",
+    tip: "Spinning = spinna tråd. Jenny är namnet. Hargreaves 1764.",
   },
   {
     id: "angmaskin",
@@ -254,6 +276,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Den användes bara i jordbruket",
     ],
     correctAnswer: "Den gav kraft till fabriker och transport och var inte beroende av vatten eller vind",
+    tip: "Ånga drev maskiner – man behövde inte längre vattenfall eller vind.",
   },
   {
     id: "kraftkalla",
@@ -265,6 +288,7 @@ export const quizQuestions: QuizQuestion[] = [
       "En handelsväg",
     ],
     correctAnswer: "Något som ger energi till maskiner, t.ex. vatten, ånga eller el",
+    tip: "Kraftkälla = varifrån maskiner får sin energi. Vatten, ånga, el.",
   },
   {
     id: "ludditer",
@@ -276,6 +300,7 @@ export const quizQuestions: QuizQuestion[] = [
       "De erövrade kolonier",
     ],
     correctAnswer: "De förstörde maskiner som de ansåg tog deras arbete",
+    tip: "Ludditer var arbetare som var emot de nya maskinerna. Vad gjorde de med dem?",
   },
   {
     id: "lopande_bandet",
@@ -287,6 +312,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Att fabriker bandar samman",
     ],
     correctAnswer: "Att varor eller delar förs vidare mellan arbetsstationer så att arbetet blir mer effektivt",
+    tip: "Löpande band = varor rör sig mellan arbetsplatser. Tänk Ford och bilfabriker.",
   },
   {
     id: "manufaktur",
@@ -298,6 +324,7 @@ export const quizQuestions: QuizQuestion[] = [
       "En typ av koloni",
     ],
     correctAnswer: "En verkstad eller fabrik där flera arbetare tillverkar varor, ofta med arbetsfördelning",
+    tip: "Manufaktur = tillverkning på en plats med flera arbetare och arbetsfördelning.",
   },
   {
     id: "jordlos",
@@ -309,6 +336,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Att man bor i staden",
     ],
     correctAnswer: "Att man inte äger eller brukar egen jord och ofta är fattig eller arbetar för andra",
+    tip: "Jordlös = utan jord. Många blev det när jordbruket förändrades – vad hände då?",
   },
   {
     id: "emigration",
@@ -320,6 +348,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Att man startar en fabrik",
     ],
     correctAnswer: "Att man lämnar sitt hemland för att bosätta sig i ett annat land",
+    tip: "Emigration = ut ur landet. Motsatsen till immigration (in i landet).",
   },
   {
     id: "arbetarklass",
@@ -331,6 +360,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Kungligheter och adel",
     ],
     correctAnswer: "De som säljer sin arbetskraft för lön och ofta har få ägodelar",
+    tip: "Arbetarklass = de som arbetar för lön i fabriker och verkstad, inte äger företag.",
   },
   {
     id: "medelklass",
@@ -342,6 +372,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Endast adeln",
     ],
     correctAnswer: "Grupper mellan arbetare och de rikaste – t.ex. tjänstemän, läkare, köpmän",
+    tip: "Medelklass = mellan arbetare och de rikaste. Tjänstemän, läkare, köpmän.",
   },
   {
     id: "fackforeningar",
@@ -353,6 +384,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Religiösa grupper",
     ],
     correctAnswer: "Organisationer där arbetare går samman för att förbättra löner och arbetsvillkor",
+    tip: "Fack = fackförening. Arbetare organiserar sig för bättre löner och villkor.",
   },
   {
     id: "konsroller",
@@ -364,6 +396,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Arbetsdelning enbart i fabriker",
     ],
     correctAnswer: "Förväntningar på vad män och kvinnor ska göra i samhället och i familjen",
+    tip: "Könsroller = roller för män respektive kvinnor – arbete, familj, samhälle.",
   },
   {
     id: "i_u_land",
@@ -375,6 +408,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Det är samma sak",
     ],
     correctAnswer: "I-länder är industrialiserade/utvecklade, U-länder är utvecklingsländer",
+    tip: "I-land = industrialiserat/utvecklat. U-land = utvecklingsland.",
   },
   // —— Personer ——
   {
@@ -387,6 +421,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Han byggde ångbåtar",
     ],
     correctAnswer: "Han använde vattenkraft till spinnmaskiner (1769)",
+    tip: "Arkwright – vattenkraft och spinnmaskiner. Water Frame 1769.",
   },
   {
     id: "james_watt",
@@ -398,6 +433,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Han byggde den första ångbåten",
     ],
     correctAnswer: "Han förbättrade ångmaskinen (1765)",
+    tip: "James Watt = ångmaskinen. 1760-talet. En av de viktigaste uppfinningarna.",
   },
   {
     id: "fulton",
@@ -409,6 +445,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Förbättrad ångmaskin",
     ],
     correctAnswer: "Ångbåten 1807",
+    tip: "Fulton = ångbåt. Transport på vattnet med ångkraft.",
   },
   // —— Instuderingsfrågor omvandlade till flerval ——
   {
@@ -421,6 +458,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Endast att bygga skolor",
     ],
     correctAnswer: "Råvaror, mark, makt och möjlighet att sälja varor",
+    tip: "Vad behövde industriländerna? Tänk råvaror, mark och varumarknader.",
   },
   {
     id: "varfor_revolution",
@@ -432,6 +470,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Det är ett misstag i historieböckerna",
     ],
     correctAnswer: "Förändringarna var så stora och snabba att samhället förändrades radikalt – därav begreppet revolution",
+    tip: "Revolution behöver inte vara kort – det handlar om hur genomgripande förändringen var.",
   },
   {
     id: "historiebruk",
@@ -443,6 +482,7 @@ export const quizQuestions: QuizQuestion[] = [
       "För att bara Storbritannien hade revolution",
     ],
     correctAnswer: "Varje land betonar sin egen roll och sin egen historia – historiebruk",
+    tip: "Historiebruk = hur vi använder historien. Varför skriver Sverige och Storbritannien olika?",
   },
   {
     id: "vetenskap_ny_religion",
@@ -454,6 +494,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Att kyrkan styrde vetenskapen",
     ],
     correctAnswer: "Att förklaringar och tro på framsteg alltmer byggde på vetenskap i stället för bara religion",
+    tip: "Vetenskapen gav nya svar på frågor som tidigare religion svarat på.",
   },
   {
     id: "rasindelning",
@@ -465,6 +506,7 @@ export const quizQuestions: QuizQuestion[] = [
       "För att alla skulle få rösträtt",
     ],
     correctAnswer: "För att rättfärdiga slaveri, kolonialism och överordning – 'vi är bättre'",
+    tip: "Rasindelning användes för att motivera att vissa grupper skulle styra eller förtrycka andra.",
   },
   {
     id: "fabriker_varfor",
@@ -476,6 +518,7 @@ export const quizQuestions: QuizQuestion[] = [
       "För att kyrkan krävde det",
     ],
     correctAnswer: "Förlagssystem och urbanisering samlade arbetskraft och kapital; ny teknik gjorde fabriksproduktion lönsam",
+    tip: "Förlagssystem samlade arbete; urbanisering = fler i städer. Teknik = fabriker lönsamma.",
   },
   {
     id: "uppfinningar_viktiga",
@@ -487,6 +530,7 @@ export const quizQuestions: QuizQuestion[] = [
       "De ersatte all handel",
     ],
     correctAnswer: "De ökade produktionstakten, minskade kostnader och gjorde fabriksproduktion möjlig",
+    tip: "Uppfinningar = mer producerat, billigare, möjlighet att driva fabriker.",
   },
   {
     id: "bakterier",
@@ -498,6 +542,7 @@ export const quizQuestions: QuizQuestion[] = [
       "För att förbättra ångmaskiner",
     ],
     correctAnswer: "Man kunde bättre förstå och bekämpa sjukdomar och förbättra hälsa och hygien",
+    tip: "Bakterier förklarar sjukdomar. Bättre hygien och medicin blev möjliga.",
   },
   {
     id: "snobollseffekt",
@@ -509,6 +554,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Att revolutionen varade exakt 100 år",
     ],
     correctAnswer: "Att en förändring leder till fler förändringar – orsaker och konsekvenser bygger på varandra",
+    tip: "Snöbollseffekt = en sak leder till nästa. Orsaker och konsekvenser i kedjor.",
   },
   {
     id: "usa_industri",
@@ -520,6 +566,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Sverige hjälpte till",
     ],
     correctAnswer: "Råvaror, kapital, invandring, stora marknader och tillgång till teknik och investeringar",
+    tip: "USA hade stora fördelar: råvaror, många människor, stor marknad, teknik.",
   },
   {
     id: "sverige_industrier",
@@ -531,6 +578,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Endast handel",
     ],
     correctAnswer: "Skogsindustri, gruvor, stål och verkstadsindustri, textil",
+    tip: "Sverige hade skog, järnmalm, vattenkraft – vilka industrier byggde på det?",
   },
   {
     id: "livet_forandrades",
@@ -542,6 +590,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Bara bönder påverkades",
     ],
     correctAnswer: "Urbanisering, trångboddhet i städer, nya arbetsvillkor, förändrade könsroller och kvinnors roll",
+    tip: "Fler flyttade till städer – trångt, nya jobb, kvinnors roll förändrades.",
   },
   {
     id: "emigration_usa",
@@ -553,6 +602,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Endast av religiösa skäl",
     ],
     correctAnswer: "Fattigdom, brist på jord och arbete, hungerår och förhoppning om bättre liv i USA",
+    tip: "Många hade det svårt i Sverige – brist på jord, arbete. USA lockade med möjligheter.",
   },
   // —— Från Indi 1 & indi2 (tidslinje, orsaker, uppfinningar, Sverige) ——
   {
@@ -565,6 +615,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Införande av demokrati",
     ],
     correctAnswer: "En snabb förändring av ett lands politiska, ekonomiska och sociala system",
+    tip: "Materialet säger: revolution = omvälvning, snabb förändring av politik, ekonomi och samhälle.",
   },
   {
     id: "sjuarskriget_indien",
@@ -576,6 +627,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Spaniens flotta",
     ],
     correctAnswer: "Kontroll över handeln med Indien",
+    tip: "Storbritannien besegrade Frankrike 1756–1763. Vad gav det britterna i handel?",
   },
   {
     id: "digerdoden",
@@ -587,6 +639,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Jordbruket behövde fler arbetare",
     ],
     correctAnswer: "Brist på arbetskraft – arbetare blev mer värdefulla och löner steg",
+    tip: "Digerdöden dödade många – färre arbetare. Vad hände med löner och livegenskap?",
   },
   {
     id: "poitiers_toledo",
@@ -598,6 +651,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Där fanns de största kolgruvorna",
     ],
     correctAnswer: "Där återupptäcktes gamla texter och vetenskap som påskyndade utvecklingen i Europa",
+    tip: "I Spanien fanns kunskap bevarad från antiken. Europa återupptäckte den – renässans.",
   },
   {
     id: "water_frame",
@@ -609,6 +663,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Ett ånglok",
     ],
     correctAnswer: "En spinnmaskin driven av vattenkraft",
+    tip: "Water Frame = vatten + ram. Arkwright 1769. Spinnmaskin med vattenkraft.",
   },
   {
     id: "spinning_mule",
@@ -620,6 +675,7 @@ export const quizQuestions: QuizQuestion[] = [
       "En symaskin",
     ],
     correctAnswer: "En förbättrad spinnmaskin",
+    tip: "Spinning Mule 1779 – en utveckling av spinnmaskinerna, mer effektiv.",
   },
   {
     id: "jarnvag_1825",
@@ -631,6 +687,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Järnvägen förbjöds i Storbritannien",
     ],
     correctAnswer: "Den första järnvägen för passagerare och gods öppnades",
+    tip: "Årtal 1825 – transportrevolutionen. Järnväg för passagerare och gods.",
   },
   {
     id: "storbritannien_befolkning",
@@ -642,6 +699,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Den tredubblades",
     ],
     correctAnswer: "Den fördubblades",
+    tip: "Perioden 1750–1851. Nya jordbruksmetoder gav mer mat – befolkningen växte.",
   },
   {
     id: "usa_massproduktion",
@@ -653,6 +711,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Endast textilindustri",
     ],
     correctAnswer: "Massproduktion, bland annat med löpande band i fabriker",
+    tip: "USA hade råvaror, stor befolkning, stora marknader. Löpande band = massproduktion.",
   },
   {
     id: "tyskland_industri",
@@ -664,6 +723,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Endast tack vare billig arbetskraft",
     ],
     correctAnswer: "Utbildning, naturresurser och stor inre marknad",
+    tip: "Tyskland blev starkt industriland – tänk utbildning, råvaror och inre marknad.",
   },
   {
     id: "frankrike_langsammare",
@@ -675,6 +735,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Frankrike industrialiserades aldrig",
     ],
     correctAnswer: "Långsammare",
+    tip: "Storbritannien var först. Frankrike följde – men i vilken takt?",
   },
   {
     id: "skiftesreformer",
@@ -686,6 +747,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Jordbruket avskaffades",
     ],
     correctAnswer: "Små åkrar slogs ihop till större – jordbruket blev mer effektivt",
+    tip: "Skifte = omfördelning av åkrar. I Sverige slogs små bitar ihop till större.",
   },
   {
     id: "de_laval",
@@ -697,6 +759,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Spinning Jenny",
     ],
     correctAnswer: "Separatorn",
+    tip: "Gustaf de Laval – svensk uppfinnare. Separatorn används bl.a. i mjölkhantering.",
   },
   {
     id: "wingquist",
@@ -708,6 +771,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Ångloket",
     ],
     correctAnswer: "Kullagret",
+    tip: "Sven Wingquist – kullagret. Viktigt för maskiner och rotation.",
   },
   {
     id: "asea",
@@ -719,6 +783,7 @@ export const quizQuestions: QuizQuestion[] = [
       "LKAB",
     ],
     correctAnswer: "ASEA",
+    tip: "Verkstadsindustri = maskiner och utrustning. Ett känt svenskt företag från den tiden.",
   },
   {
     id: "sverige_naturresurser",
@@ -730,6 +795,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Endast guld",
     ],
     correctAnswer: "Skog, järnmalm och vattenkraft",
+    tip: "Sverige hade ingen kol men mycket skog, järn i bergen och vattenfall.",
   },
   {
     id: "emigration_period",
@@ -741,6 +807,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Mellan 1600 och 1650",
     ],
     correctAnswer: "Mellan 1840 och 1940",
+    tip: "Den stora emigrationen från Europa – ungefär 100 år. När började och när avtog den?",
   },
   {
     id: "svenskar_usa_antal",
@@ -752,6 +819,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Cirka 50 000",
     ],
     correctAnswer: "Cirka 1,2 miljoner",
+    tip: "Siffran är stor – över en miljon svenskar. Tänk 1–2 miljoner.",
   },
   {
     id: "svenskar_usa_stater",
@@ -763,6 +831,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Endast New York",
     ],
     correctAnswer: "Minnesota, Illinois och Wisconsin",
+    tip: "Många svenskar bosatte sig i mellanvästern – tre delstater med M, I, W.",
   },
   {
     id: "arbetarrorelsen",
@@ -774,6 +843,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Endast rösträtt",
     ],
     correctAnswer: "Bättre löner, kortare arbetstid och bättre arbetsmiljö",
+    tip: "Arbetare organiserade sig – fackföreningar. Vad ville de förbättra?",
   },
   {
     id: "konsekvenser_langsikt",
@@ -785,6 +855,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Inga konsekvenser",
     ],
     correctAnswer: "Ekonomisk tillväxt och bättre levnadsstandard, men också miljöproblem och klasskillnader",
+    tip: "Både positiva (tillväxt, levnadsstandard) och negativa (miljö, klyftor) konsekvenser.",
   },
   {
     id: "industrilander_efter_storbritannien",
@@ -796,6 +867,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Inga – bara Storbritannien",
     ],
     correctAnswer: "USA, Frankrike, Tyskland och Belgien",
+    tip: "Storbritannien först. Sedan följde andra länder under 1800-talet – vilka?",
   },
   {
     id: "jordbruk_1700_metoder",
@@ -807,6 +879,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Endast större åkrar",
     ],
     correctAnswer: "Bättre plogar av järn, utdikning av kärr, nya växter och bättre boskapsraser",
+    tip: "Jordbruket förbättrades med nya redskap, odling och djur – flera saker nämns.",
   },
   {
     id: "kol_jarn",
@@ -818,6 +891,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Det ersatte vattenkraft",
     ],
     correctAnswer: "Det gjorde det möjligt att producera järn och stål billigare",
+    tip: "Kol behövdes för att smälta järn. Storbritannien hade mycket kol.",
   },
   {
     id: "transportrevolution",
@@ -829,6 +903,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Endast broar",
     ],
     correctAnswer: "Kanaler, bättre vägar och järnvägar",
+    tip: "Industrin behövde transportera varor – vad byggdes? Kanaler, vägar, järnväg.",
   },
   {
     id: "symaskin_sverige",
@@ -840,6 +915,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Den ersatte alla andra maskiner",
     ],
     correctAnswer: "Kläder kunde produceras mycket snabbare – fler kunde köpa färdiga kläder",
+    tip: "Symaskin = snabbare tillverkning av kläder. Fler köpte färdiga kläder istället för att sy själva.",
   },
   {
     id: "frihandel_1800",
@@ -851,6 +927,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Kungen tog över all handel",
     ],
     correctAnswer: "Många regler avskaffades – frihandel gjorde det lättare att sälja mellan länder",
+    tip: "Under 1800-talet togs många handelshinder bort. Frihandel = friare handel mellan länder.",
   },
   {
     id: "sagverk_norrland",
@@ -862,6 +939,7 @@ export const quizQuestions: QuizQuestion[] = [
       "Sverige hade ingen sågverksindustri",
     ],
     correctAnswer: "Norrland",
+    tip: "Sågverksindustrin behövde skog. Var i Sverige fanns mycket skog?",
   },
 ];
 

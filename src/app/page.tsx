@@ -15,6 +15,7 @@ export default function QuizPage() {
   const [score, setScore] = useState(0);
   const [started, setStarted] = useState(false);
   const [showFinalResult, setShowFinalResult] = useState(false);
+  const [showTip, setShowTip] = useState(false);
 
   const startQuiz = useCallback(() => {
     setQuestions(getShuffledQuestions());
@@ -24,6 +25,7 @@ export default function QuizPage() {
     setScore(0);
     setStarted(true);
     setShowFinalResult(false);
+    setShowTip(false);
   }, []);
 
   const goToStart = useCallback(() => {
@@ -34,6 +36,7 @@ export default function QuizPage() {
     setScore(0);
     setStarted(false);
     setShowFinalResult(false);
+    setShowTip(false);
   }, []);
 
   const current = questions[currentIndex];
@@ -53,6 +56,7 @@ export default function QuizPage() {
       setCurrentIndex((i) => i + 1);
       setSelected(null);
       setShowResult(false);
+      setShowTip(false);
     } else {
       setShowFinalResult(true);
     }
@@ -149,6 +153,23 @@ export default function QuizPage() {
           <h2 className="text-lg sm:text-xl font-semibold text-white mb-6 leading-snug">
             {current.question}
           </h2>
+          {current.tip && (
+            <div className="mb-6">
+              {!showTip ? (
+                <button
+                  type="button"
+                  onClick={() => setShowTip(true)}
+                  className="text-sm text-[var(--accent)] hover:underline"
+                >
+                  Visa tips
+                </button>
+              ) : (
+                <p className="text-sm text-[var(--text-muted)] italic border-l-2 border-[var(--accent)] pl-3 py-1">
+                  {current.tip}
+                </p>
+              )}
+            </div>
+          )}
           <ul className="space-y-3">
             {current.options.map((option) => {
               const isChosen = selected === option;
