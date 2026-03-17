@@ -12,9 +12,9 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     question: "Vad bygger nationalismen på?",
     options: [
       "Tanken att folkgrupper med egen kultur, historia och språk bör ha egen nationalstat",
-      "Tanken att alla människor ska leva i ett enda världsrike utan gränser",
-      "Tanken att religion ska styra gränserna mellan stater och lagar",
-      "Tanken att kungar ska ärva flera länder och förena dem under en monark",
+      "Tanken att alla människor ska leva i ett enda världsrike utan gränser eller nationer",
+      "Tanken att religion ska styra gränserna mellan stater och alla lagar i samhället",
+      "Tanken att kungar ska ärva flera länder och förena dem under en monark utan folket med",
     ],
     correctAnswer:
       "Tanken att folkgrupper med egen kultur, historia och språk bör ha egen nationalstat",
@@ -24,10 +24,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-franska-rev-nationalism",
     question: "Vilken betydelse hade franska revolutionen för nationalismens framväxt?",
     options: [
-      "Den hade ingen betydelse för nationalismen",
+      "Den hade ingen betydelse för nationalismen – den handlade bara om kungamakt och skatter",
       "Människor blev medborgare med rättigheter i staten istället för undersåtar till en kung",
-      "Den avskaffade alla nationer och införde ett europeiskt förbund",
-      "Den införde monarki och adelsvälde i hela Europa",
+      "Den avskaffade alla nationer och införde ett europeiskt förbund utan nationella gränser",
+      "Den införde monarki och adelsvälde i hela Europa med ännu starkare kungamakt",
     ],
     correctAnswer:
       "Människor blev medborgare med rättigheter i staten istället för undersåtar till en kung",
@@ -39,8 +39,8 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     options: [
       "Napoleon avskaffade nationalism överallt och införde enhetliga lagar",
       "Motståndet mot fransmännen väckte nationalistiska känslor och gemenskap hos de erövrade",
-      "Napoleon tvingade alla att bli fransmän och använda franska språket",
-      "Han förbjöd alla andra språk och religioner i de erövrade områdena",
+      "Napoleon tvingade alla att bli fransmän och använda franska språket i skolor och förvaltning",
+      "Han förbjöd alla andra språk och religioner i de erövrade områdena under straff",
     ],
     correctAnswer:
       "Motståndet mot fransmännen väckte nationalistiska känslor och gemenskap hos de erövrade",
@@ -52,8 +52,8 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     options: [
       "Skolan lärde barn att avvisa nationen och prioritera lokala traditioner",
       "Befolkningen lärde sig om nationen och dess historia och ett gemensamt nationellt språk",
-      "Skolan lärde bara ut matematik och naturvetenskap utan historia",
-      "Skolan var förbehållen adeln och de rikaste familjerna",
+      "Skolan lärde bara ut matematik och naturvetenskap utan historia eller språk",
+      "Skolan var förbehållen adeln och de rikaste familjerna medan folket stod utanför",
     ],
     correctAnswer:
       "Befolkningen lärde sig om nationen och dess historia och ett gemensamt nationellt språk",
@@ -63,10 +63,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-spridning-medier",
     question: "Vilka faktorer drev på nationalismens spridning utöver skolan?",
     options: [
-      "Bara kyrkan och de religiösa skrifterna",
+      "Bara kyrkan och de religiösa skrifterna som spreds från prästerna till folket",
       "Bättre kommunikationer (t.ex. järnväg, telegraf) och massdistribuerade tidningar",
-      "Endast krig och militära segrar som enade folket",
-      "Endast handel och ekonomisk tillväxt mellan regioner",
+      "Endast krig och militära segrar som enade folket mot gemensamma fiender",
+      "Endast handel och ekonomisk tillväxt mellan regioner utan politiska budskap",
     ],
     correctAnswer:
       "Bättre kommunikationer (t.ex. järnväg, telegraf) och massdistribuerade tidningar",
@@ -77,10 +77,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-tyskland-38-stater",
     question: "Hur såg Tyskland ut i mitten av 1800-talet innan enandet?",
     options: [
-      "Ett enda starkt rike under en kejsare i Berlin",
+      "Ett enda starkt rike under en kejsare i Berlin med centraliserad makt",
       "Uppdelat i 38 stater som ingick i Tyska förbundet",
-      "En del av Frankrike efter Napoleons erövringar",
-      "En del av Ryssland och Österrike tillsammans",
+      "En del av Frankrike efter Napoleons erövringar och under fransk förvaltning",
+      "En del av Ryssland och Österrike tillsammans som ett gemensamt protektorat",
     ],
     correctAnswer: "Uppdelat i 38 stater som ingick i Tyska förbundet",
     tip: "Tyska förbundet leddes av Österrikes kejsare; det fanns många småstater med tullar och gränser.",
@@ -89,10 +89,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-bismarck-blod-jarn",
     question: "Vad menade Bismarck med att ena Tyskland med \"blod och järn\"?",
     options: [
-      "Att bygga järnvägar och donera blod för de sårade i krig",
+      "Att bygga järnvägar och donera blod för de sårade i krig i stället för att slåss",
       "Att vägen till ett enat rike skulle ske med våld (krig)",
-      "Att alla skulle arbeta i gruvor och i järnindustrin",
-      "Att förbjuda vapen och lösa konflikter fredligt",
+      "Att alla skulle arbeta i gruvor och i järnindustrin för nationens välfärd",
+      "Att förbjuda vapen och lösa konflikter fredligt mellan de tyska staterna",
     ],
     correctAnswer: "Att vägen till ett enat rike skulle ske med våld (krig)",
     tip: "Bismarck genomförde tre krig för att ena de tyska staterna.",
@@ -101,10 +101,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-bismarck-krig",
     question: "Mot vilka tre länder genomförde Bismarck krig för att ena Tyskland?",
     options: [
-      "Sverige, Norge och Danmark",
+      "Sverige, Norge och Danmark i de skandinaviska krigen under 1860-talet",
       "Danmark 1864, Österrike 1866 och Frankrike 1870–1871",
-      "Italien, Spanien och Portugal",
-      "Ryssland, USA och Japan",
+      "Italien, Spanien och Portugal i syfte att erövra Medelhavskusten",
+      "Ryssland, USA och Japan i en global konflikt om handelsrutter",
     ],
     correctAnswer: "Danmark 1864, Österrike 1866 och Frankrike 1870–1871",
     tip: "Tre krig i följd – Danmark, Österrike, Frankrike – ledde till Tyska kejsarriket 1871.",
@@ -115,8 +115,8 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     options: [
       "I Berlin",
       "I Versailles i Frankrike; den preussiske kungen Vilhelm I kröntes till tysk kejsare",
-      "I Wien",
-      "I Rom",
+      "I Wien där Österrike och Tyskland sedan länge hade sitt politiska centrum",
+      "I Rom som symbol för att Tyskland skulle bli ett nytt heligt romerskt rike",
     ],
     correctAnswer:
       "I Versailles i Frankrike; den preussiske kungen Vilhelm I kröntes till tysk kejsare",
@@ -126,10 +126,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-tyskland-alsace-lorraine",
     question: "Vilken effekt hade förlusten av Alsace och Lorraine för Frankrike?",
     options: [
-      "Frankrike glömde det snabbt och accepterade de nya gränserna",
+      "Frankrike glömde det snabbt och accepterade de nya gränserna utan protester",
       "Det skapade stor revanschlust i Frankrike under kommande år",
-      "Frankrike erövrade hela Tyskland och tog tillbaka områdena",
-      "Det påverkade inte relationerna mellan länderna alls",
+      "Frankrike erövrade hela Tyskland och tog tillbaka områdena inom några år",
+      "Det påverkade inte relationerna mellan länderna alls och allt blev vänskapligt",
     ],
     correctAnswer: "Det skapade stor revanschlust i Frankrike under kommande år",
     tip: "Förlusten av dessa landskap blev en drivkraft för fransk revanschpolitik.",
@@ -139,10 +139,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-risorgimento",
     question: "Vad betyder risorgimento i italiensk nationalism?",
     options: [
-      "Krig och militär erövring av grannländerna",
+      "Krig och militär erövring av grannländerna utan politisk eller kulturell enande",
       "Pånyttfödelse – rörelsen för Italiens enande",
-      "Kungadöme och monarkins återinförande",
-      "Religion och kyrkans ledande roll i enandet",
+      "Kungadöme och monarkins återinförande som enda styre över halvön",
+      "Religion och kyrkans ledande roll i enandet under påvens auktoritet",
     ],
     correctAnswer: "Pånyttfödelse – rörelsen för Italiens enande",
     tip: "Risorgimento var den nationalistiska rörelsen som ville ena den italienska halvön.",
@@ -151,10 +151,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-mazzini",
     question: "Vilken roll spelade Giuseppe Mazzini för Italiens enande?",
     options: [
-      "Han var kung av Italien",
+      "Han var kung av Italien och styrde enandet från Rom med absolut makt",
       "Han var nationalistisk företrädare som skrev för enandet och planerade revolution",
-      "Han var fransk general",
-      "Han var påve",
+      "Han var fransk general som erövrade halvön åt Napoleon och Frankrike",
+      "Han var påve och ledde kyrkostaten under Italiens enande",
     ],
     correctAnswer:
       "Han var nationalistisk företrädare som skrev för enandet och planerade revolution",
@@ -164,10 +164,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-garibaldi-rodskjortor",
     question: "Vad var Garibaldis \"rödskjortor\"?",
     options: [
-      "En modekreation som spreds från Milano till hela Italien",
+      "En modekreation som spreds från Milano till hela Italien under 1800-talet",
       "En frivillig armé som kämpade för Italiens enande, känd för röda skjortor",
-      "En religiös orden under påvens ledning som verkade för fred",
-      "Österrikiska soldater som försvarade italienska staterna",
+      "En religiös orden under påvens ledning som verkade för fred mellan staterna",
+      "Österrikiska soldater som försvarade italienska staterna mot nationalistiska uppror",
     ],
     correctAnswer:
       "En frivillig armé som kämpade för Italiens enande, känd för röda skjortor",
@@ -177,10 +177,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-cavour",
     question: "Vad gjorde Camillo Cavour för Italiens enande?",
     options: [
-      "Han var bara kung av en liten italiensk stat",
+      "Han var bara kung av en liten italiensk stat utan inflytande över enandet",
       "Han var regeringschef i Piemonte, fick Frankrike att stödja kampen mot Österrike",
-      "Han erövrade Rom ensam med en liten armé och tog makten",
-      "Han avskaffade nationalismen och verkade för att behålla de gamla gränserna",
+      "Han erövrade Rom ensam med en liten armé och tog makten över kyrkostaten",
+      "Han avskaffade nationalismen och verkade för att behålla de gamla gränserna mellan staterna",
     ],
     correctAnswer:
       "Han var regeringschef i Piemonte, fick Frankrike att stödja kampen mot Österrike",
@@ -190,10 +190,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-italien-1861",
     question: "När enades Italien till ett kungarike och vilket land ledde enandet?",
     options: [
-      "1871 under Preussen som då kontrollerade halvön",
+      "1871 under Preussen som då kontrollerade halvön efter kriget mot Frankrike",
       "1861; kungariket Sardinien-Piemonte ledde enandet",
-      "1832 under Grekland som allierat med Italien",
-      "1815 under Österrike efter Wienkongressen",
+      "1832 under Grekland som allierat med Italien i en gemensam federation",
+      "1815 under Österrike efter Wienkongressen och restaurationspolitiken",
     ],
     correctAnswer: "1861; kungariket Sardinien-Piemonte ledde enandet",
     tip: "1861 utropades Kungariket Italien; Piemonte och Cavour var centrala.",
@@ -202,10 +202,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-rom-vatikanen",
     question: "Hur förhåller sig Rom och Vatikanstaten till Italiens enande?",
     options: [
-      "Rom var alltid italienskt och påven flyttade till Florens",
+      "Rom var alltid italienskt och påven flyttade till Florens som ny kyrklig huvudstad",
       "Italien erövrade Rom 1870 som blev huvudstad; påven garanterades skydd och Vatikanen blev världens minsta stat",
-      "Påven förbjöd Italiens enande och exkommunicerade Garibaldi",
-      "Vatikanen styrde hela Italien genom en union mellan kyrka och stat",
+      "Påven förbjöd Italiens enande och exkommunicerade Garibaldi och alla nationalister",
+      "Vatikanen styrde hela Italien genom en union mellan kyrka och stat under påvens ledning",
     ],
     correctAnswer:
       "Italien erövrade Rom 1870 som blev huvudstad; påven garanterades skydd och Vatikanen blev världens minsta stat",
@@ -216,10 +216,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-osmanska-millet",
     question: "Vad var millet-systemet i Osmanska riket?",
     options: [
-      "Ett militärsystem där provinser försvarades av lokala trupper",
+      "Ett militärsystem där provinser försvarades av lokala trupper under sultanens befäl",
       "Att religiösa minoriteter hade visst självstyre och egna lagar under osmanerna",
-      "Ett skattesystem som fördelade skatter mellan olika folkgrupper",
-      "Ett språksystem där alla måste tala turkiska i förvaltningen",
+      "Ett skattesystem som fördelade skatter mellan olika folkgrupper efter deras inkomst",
+      "Ett språksystem där alla måste tala turkiska i förvaltningen och i skolorna",
     ],
     correctAnswer:
       "Att religiösa minoriteter hade visst självstyre och egna lagar under osmanerna",
@@ -229,10 +229,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-osmanska-splittring",
     question: "Varför splittrades Osmanska riket under 1800- och tidiga 1900-talet?",
     options: [
-      "Bara på grund av klimat och missväxt som försvagade riket",
+      "Bara på grund av klimat och missväxt som försvagade riket ekonomiskt och militärt",
       "Nationalismen spreds bland minoriteter som krävde självständighet; inre och yttre tryck",
-      "Österrike erövrade det helt efter första världskriget",
-      "Det splittrades inte utan förblev enat under sultanen",
+      "Österrike erövrade det helt efter första världskriget och lade det under kejsaren",
+      "Det splittrades inte utan förblev enat under sultanen fram till nutiden",
     ],
     correctAnswer:
       "Nationalismen spreds bland minoriteter som krävde självständighet; inre och yttre tryck",
@@ -242,10 +242,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-osmanska-1923",
     question: "Vad återstod av Osmanska riket år 1923?",
     options: [
-      "Hela riket",
+      "Hela riket förblev intakt med samma gränser som under 1800-talet",
       "En liten del – det som är dagens Turkiet",
-      "Ingenting",
-      "Bara Balkan",
+      "Ingenting – imperiet upplöstes helt och alla territorier blev självständiga stater",
+      "Bara Balkan – övriga delar förlorades till Ryssland och Storbritannien",
     ],
     correctAnswer: "En liten del – det som är dagens Turkiet",
     tip: "Första världskriget och nationalismen ledde till att imperiet ersattes av många stater; kvar blev dagens Turkiet.",
@@ -254,10 +254,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-europas-sjuke-man",
     question: "Vilket rike kallades \"Europas sjuke man\" och varför?",
     options: [
-      "Storbritannien på grund av sjukdomar",
+      "Storbritannien på grund av sjukdomar och ekonomisk kris under 1800-talet",
       "Osmanska riket – uttryck för hur svagt riket hade blivit",
-      "Frankrike på grund av revolution",
-      "Tyskland efter 1871",
+      "Frankrike på grund av revolution och inre splittring under 1800-talet",
+      "Tyskland efter 1871 på grund av förlusten i första världskriget",
     ],
     correctAnswer: "Osmanska riket – uttryck för hur svagt riket hade blivit",
     tip: "Uttrycket användes för att beskriva det sönderfallande Osmanska riket.",
@@ -267,10 +267,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-osterrike-ungern",
     question: "Vad hände med Österrike 1867?",
     options: [
-      "Det försvann och delades upp i många småstater",
+      "Det försvann och delades upp i många småstater redan under 1860-talet",
       "Det bildade unionen Österrike-Ungern (dubbelmonarki) under Frans Josef",
-      "Det erövrade Frankrike och blev Europas starkaste makt",
-      "Det enades med Italien i en stor central europeisk federation",
+      "Det erövrade Frankrike och blev Europas starkaste makt efter krigssegrar",
+      "Det enades med Italien i en stor central europeisk federation under en kejsare",
     ],
     correctAnswer: "Det bildade unionen Österrike-Ungern (dubbelmonarki) under Frans Josef",
     tip: "Frans Josef var både kejsare i Österrike och kung över Ungern.",
@@ -281,8 +281,8 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     options: [
       "Bara för att det förlorade kriget",
       "Nationalismen – många folkgrupper krävde självständighet; nya stater bildades (t.ex. Tjeckoslovakien, Ungern, Jugoslavien)",
-      "Det splittrades inte",
-      "Påven krävde det",
+      "Det splittrades inte utan förblev en dubbelmonarki fram till andra världskriget",
+      "Påven krävde det och påvliga bullor tvingade kejsaren att ge upp territorierna",
     ],
     correctAnswer:
       "Nationalismen – många folkgrupper krävde självständighet; nya stater bildades (t.ex. Tjeckoslovakien, Ungern, Jugoslavien)",
@@ -293,10 +293,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-imperialism-period",
     question: "Under vilken period var imperialismen som starkast i Europa?",
     options: [
-      "1600-talet",
+      "1600-talet när de första stora kolonialimperierna grundades i Amerika och Asien",
       "1870–1914 (slutet av 1800-talet och början av 1900-talet)",
-      "Medeltiden",
-      "Efter andra världskriget",
+      "Medeltiden när korsfararna och handelsmännen etablerade utposter i Östern",
+      "Efter andra världskriget när de gamla kolonialmakterna återtog sina territorier",
     ],
     correctAnswer: "1870–1914 (slutet av 1800-talet och början av 1900-talet)",
     tip: "Imperialismen var en intensifierad kolonialism med ökad tävling om kolonier.",
@@ -305,10 +305,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-imperialism-orsak-ww1",
     question: "Vad var imperialismen i förhållande till första världskriget?",
     options: [
-      "Ingen koppling – imperialismen upphörde innan kriget",
+      "Ingen koppling – imperialismen upphörde innan kriget och påverkade inte allianserna",
       "En bakomliggande orsak till första världskriget",
-      "Ett resultat av kriget som kom efter att kolonierna förlorats",
-      "Bara ett begrepp som inte påverkade politik eller konflikter",
+      "Ett resultat av kriget som kom efter att kolonierna förlorats till segrarmakterna",
+      "Bara ett begrepp som inte påverkade politik eller konflikter mellan stormakterna",
     ],
     correctAnswer: "En bakomliggande orsak till första världskriget",
     tip: "Tävlingen om kolonier och makt bidrog till spänningar mellan stormakterna.",
@@ -319,8 +319,8 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     options: [
       "Avveckling av alla arméer och nedrustning i kolonierna",
       "Kolonial expansion – europeiska länder tog kontroll över stora delar av Afrika, Asien och Stilla havet",
-      "Avskaffande av handel mellan Europa och andra världsdelar",
-      "Endast kulturellt utbyte utan makt eller politisk kontroll",
+      "Avskaffande av handel mellan Europa och andra världsdelar för att skydda inhemsk industri",
+      "Endast kulturellt utbyte utan makt eller politisk kontroll över erövrade territorier",
     ],
     correctAnswer:
       "Kolonial expansion – europeiska länder tog kontroll över stora delar av Afrika, Asien och Stilla havet",
@@ -342,10 +342,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-brittiska-indien",
     question: "Vad kallades Brittiska Indien i det brittiska imperiet?",
     options: [
-      "Ingen särskild benämning – bara en koloni bland många",
+      "Ingen särskild benämning – bara en koloni bland många i imperiets periferi",
       "\"Juvelen i kronan\" – Storbritanniens viktigaste koloni",
-      "Den fattigaste kolonin som krävde mest bistånd från London",
-      "En provins utan betydelse för handel eller strategi",
+      "Den fattigaste kolonin som krävde mest bistånd från London för att överleva",
+      "En provins utan betydelse för handel eller strategi i det brittiska imperiet",
     ],
     correctAnswer: "\"Juvelen i kronan\" – Storbritanniens viktigaste koloni",
     tip: "Indien var central för imperiets ekonomi och makt.",
@@ -356,8 +356,8 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     options: [
       "Ett TV-program eller en sporttävling mellan nationer",
       "Maktkampen mellan Storbritannien och Ryssland; Ryssland expanderade och hotade GB:s koloni Indien, Afghanistan hamnade i kläm",
-      "Ett krig mellan Frankrike och Tyskland om kolonierna i Afrika",
-      "Ett handelsspel där länder tävlade om att sälja mest varor",
+      "Ett krig mellan Frankrike och Tyskland om kolonierna i Afrika under slutet av 1800-talet",
+      "Ett handelsspel där länder tävlade om att sälja mest varor till kolonierna",
     ],
     correctAnswer:
       "Maktkampen mellan Storbritannien och Ryssland; Ryssland expanderade och hotade GB:s koloni Indien, Afghanistan hamnade i kläm",
@@ -369,8 +369,8 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     options: [
       "Att avveckla kolonierna och ge alla folk självständighet",
       "Budskapet att vita människor hade \"plikten\" att styra och \"civilisera\" andra folk – användes för att motivera kolonial expansion",
-      "Kritik mot imperialismen och kolonialmakternas övergrepp",
-      "Om jordbruk och hur kolonierna skulle odla nya grödor",
+      "Kritik mot imperialismen och kolonialmakternas övergrepp och utnyttjande av folk",
+      "Om jordbruk och hur kolonierna skulle odla nya grödor för export till Europa",
     ],
     correctAnswer:
       "Budskapet att vita människor hade \"plikten\" att styra och \"civilisera\" andra folk – användes för att motivera kolonial expansion",
@@ -380,10 +380,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-divide-et-impera",
     question: "Vad betyder \"söndra och härska\" (divide et impera) i kolonial kontext?",
     options: [
-      "Att ena alla folkgrupper under ett gemensamt språk och lagar",
+      "Att ena alla folkgrupper under ett gemensamt språk och lagar i kolonierna",
       "Att splittra urbefolkningen i kolonierna så att olika grupper krigade mot varandra och kolonisatörerna lättare kunde kontrollera dem",
-      "Att avveckla arméer och lägga resurser på skolor och sjukvård istället",
-      "Att bygga skolor och sprida kristendomen till alla invånare",
+      "Att avveckla arméer och lägga resurser på skolor och sjukvård istället för krig",
+      "Att bygga skolor och sprida kristendomen till alla invånare i de erövrade territorierna",
     ],
     correctAnswer:
       "Att splittra urbefolkningen i kolonierna så att olika grupper krigade mot varandra och kolonisatörerna lättare kunde kontrollera dem",
@@ -395,8 +395,8 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     options: [
       "De hade inget samband – imperialismen byggde bara på religion",
       "Nationalism och industrialism gav europeiska makter teknologisk och militär överlägsenhet som användes för att dominera andra delar av världen",
-      "Industrialismen avskaffade imperialismen eftersom fabriker inte behövde kolonier",
-      "Nationalismen förbjöd kolonier och krävde att alla länder skulle vara självständiga",
+      "Industrialismen avskaffade imperialismen eftersom fabriker inte behövde kolonier längre",
+      "Nationalismen förbjöd kolonier och krävde att alla länder skulle vara helt självständiga",
     ],
     correctAnswer:
       "Nationalism och industrialism gav europeiska makter teknologisk och militär överlägsenhet som användes för att dominera andra delar av världen",
@@ -407,10 +407,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-banal-nationalism",
     question: "Vad menas med \"banal\" nationalism?",
     options: [
-      "Endast våldsamma demonstrationer och hat mot andra länder",
+      "Endast våldsamma demonstrationer och hat mot andra länder och folkgrupper",
       "Att nationen återskapar sig genom vardagliga saker (flaggor, pengar, idrott) utan att man nödvändigtvis tänker på det",
-      "Att det inte finns nationalism i moderna samhällen",
-      "Bara i krig och vid militära evenemang",
+      "Att det inte finns nationalism i moderna samhällen utan bara i historien",
+      "Bara i krig och vid militära evenemang när folket samlas kring flaggan",
     ],
     correctAnswer:
       "Att nationen återskapar sig genom vardagliga saker (flaggor, pengar, idrott) utan att man nödvändigtvis tänker på det",
@@ -420,10 +420,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-patriotism",
     question: "Vad betyder patriotism?",
     options: [
-      "Hat mot andra länder och krav på att egna intressen alltid går före",
+      "Hat mot andra länder och krav på att egna intressen alltid går före andras",
       "Fosterlandskärlek – lojalitet och kärlek till det egna landet eller staten",
-      "Samma som imperialism – att utöva makt över andra länder",
-      "Avsaknad av nationell känsla och vilja att avskaffa gränser",
+      "Samma som imperialism – att utöva makt över andra länder och erövra territorier",
+      "Avsaknad av nationell känsla och vilja att avskaffa gränser mellan alla länder",
     ],
     correctAnswer: "Fosterlandskärlek – lojalitet och kärlek till det egna landet eller staten",
     tip: "En patriot är en person som älskar sitt land och främjar dess intressen.",
@@ -433,10 +433,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-nationalstat",
     question: "Vad är en nationalstat?",
     options: [
-      "Ett land som styrs av flera kungar i union med varandra",
+      "Ett land som styrs av flera kungar i union med varandra under en gemensam monark",
       "En stat där folket delar gemensam identitet, kultur och ofta språk – nationen och staten sammanfaller",
-      "Ett land utan gränser där alla människor har samma medborgarskap",
-      "Samma som imperium – en makt som styr över flera erövrade territorier",
+      "Ett land utan gränser där alla människor har samma medborgarskap oavsett ursprung",
+      "Samma som imperium – en makt som styr över flera erövrade territorier och folk",
     ],
     correctAnswer:
       "En stat där folket delar gemensam identitet, kultur och ofta språk – nationen och staten sammanfaller",
@@ -446,10 +446,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-medborgare",
     question: "Vad innebar begreppet medborgare i samband med franska revolutionen?",
     options: [
-      "Samma som kung – den som har högsta makten i staten",
+      "Samma som kung – den som har högsta makten i staten och bestämmer över alla lagar",
       "Personer med rättigheter i staten som deltar i samhället – inte bara undersåtar till en monark",
-      "Endast adeln och de som ägde land och titlar",
-      "Endast präster och andra som arbetade för kyrkan",
+      "Endast adeln och de som ägde land och titlar och därmed hade politisk makt",
+      "Endast präster och andra som arbetade för kyrkan och hade andlig auktoritet",
     ],
     correctAnswer:
       "Personer med rättigheter i staten som deltar i samhället – inte bara undersåtar till en monark",
@@ -459,10 +459,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-tyska-forbundet",
     question: "Vad var Tyska förbundet (efter 1815)?",
     options: [
-      "Ett enat tyskt kejsarrike",
+      "Ett enat tyskt kejsarrike med en kejsare i Berlin och centraliserad förvaltning",
       "En lös sammanslutning av tyska stater, ledd av Österrikes kejsare",
-      "En armé under Napoleon",
-      "En handelsorganisation",
+      "En armé under Napoleon som erövrade de tyska områdena under krigen",
+      "En handelsorganisation för att främja fri handel mellan de tyska staterna",
     ],
     correctAnswer:
       "En lös sammanslutning av tyska stater, ledd av Österrikes kejsare",
@@ -472,10 +472,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-jarnkanslern",
     question: "Vem kallas \"Järnkanslern\" och varför är han känd?",
     options: [
-      "En fransk kung",
+      "En fransk kung som erövrade tyska territorier under revolutionskrigen",
       "Otto von Bismarck – han enade Tyskland genom krig och stark politik",
-      "En italiensk general",
-      "En brittisk admiral",
+      "En italiensk general som kämpade för Italiens enande under risorgimento",
+      "En brittisk admiral som ledde flottan under kolonialkrigen i Afrika",
     ],
     correctAnswer:
       "Otto von Bismarck – han enade Tyskland genom krig och stark politik",
@@ -485,10 +485,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-furstendome",
     question: "Vad är ett furstendöme?",
     options: [
-      "Ett republik",
+      "Ett republik där folket väljer ledare genom demokratiska val utan monark",
       "Ett område som styrs av en furste (monark med mindre titel än kung/kejsare)",
-      "Ett religiöst tempel",
-      "Ett kolonialt territorium",
+      "Ett religiöst tempel eller kyrkligt område under påvens eller biskopens ledning",
+      "Ett kolonialt territorium som styrs av en europeisk makt från huvudstaden",
     ],
     correctAnswer:
       "Ett område som styrs av en furste (monark med mindre titel än kung/kejsare)",
@@ -498,10 +498,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-trikoloren",
     question: "Vad är trikoloren?",
     options: [
-      "En typ av kanon",
+      "En typ av kanon som användes i revolutionskrigen och napoleonkrigen",
       "En flagga med tre färgade band – ofta kopplad till franska revolutionen och nationalism",
-      "Ett förbund mellan tre länder",
-      "En nationalsymbol för Tyskland",
+      "Ett förbund mellan tre länder som allierade sig mot Napoleon under krigen",
+      "En nationalsymbol för Tyskland med svart, rött och gult från 1800-talet",
     ],
     correctAnswer:
       "En flagga med tre färgade band – ofta kopplad till franska revolutionen och nationalism",
@@ -511,10 +511,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-aggressiv-nationalism",
     question: "Vad kännetecknar aggressiv (\"hot\") nationalism?",
     options: [
-      "Att man inte bryr sig om nationen utan bara om det lokala samhället",
+      "Att man inte bryr sig om nationen utan bara om det lokala samhället och grannarna",
       "Att det egna landet alltid har rätt och går före andra; nationen är allt, individen ingenting",
-      "Samma som banal nationalism – vardagliga symboler som flaggor och idrott",
-      "Endast fredliga demonstrationer och debatter utan våld eller hot",
+      "Samma som banal nationalism – vardagliga symboler som flaggor och idrott utan hot",
+      "Endast fredliga demonstrationer och debatter utan våld eller hot mot andra länder",
     ],
     correctAnswer:
       "Att det egna landet alltid har rätt och går före andra; nationen är allt, individen ingenting",
@@ -524,10 +524,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-imperialismen-fyra",
     question: "Vilka är imperialismens fyra kännetecken (enligt läroboken)?",
     options: [
-      "Demokrati, jämställdhet, fred och fri handel mellan länder",
+      "Demokrati, jämställdhet, fred och fri handel mellan länder utan erövring",
       "Kolonial expansion, ekonomisk exploatering, kulturell dominans, militär överlägsenhet",
-      "Skolor, sjukvård, vägar och kyrkor byggda i kolonierna",
-      "Telegraf, järnväg, tidningar och flaggor som spred idéer",
+      "Skolor, sjukvård, vägar och kyrkor byggda i kolonierna för invånarnas bästa",
+      "Telegraf, järnväg, tidningar och flaggor som spred idéer och nationalism i Europa",
     ],
     correctAnswer:
       "Kolonial expansion, ekonomisk exploatering, kulturell dominans, militär överlägsenhet",
@@ -537,10 +537,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-scramble-africa",
     question: "Vad var \"kapplöpningen om Afrika\" (Scramble for Africa)?",
     options: [
-      "Ett idrottsevenemang där afrikanska länder tävlade mot varandra",
+      "Ett idrottsevenemang där afrikanska länder tävlade mot varandra i kolonial tid",
       "Europas stormakters tävlan om att erövra och kolonisera afrikanska territorier under slutet av 1800-talet",
-      "Ett inbördeskrig i ett afrikanskt land som delade folket i två läger",
-      "En handelsavtal mellan Afrikas länder om fri handel och tullar",
+      "Ett inbördeskrig i ett afrikanskt land som delade folket i två läger under 1880-talet",
+      "En handelsavtal mellan Afrikas länder om fri handel och tullar utan europeiskt deltagande",
     ],
     correctAnswer:
       "Europas stormakters tävlan om att erövra och kolonisera afrikanska territorier under slutet av 1800-talet",
@@ -550,10 +550,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-slaveri-kolonisering",
     question: "Hur påverkade slaveriets avskaffande den europeiska koloniseringen (1800-talet)?",
     options: [
-      "Kolonisering upphörde helt eftersom slaveri var grunden för alla kolonier",
+      "Kolonisering upphörde helt eftersom slaveri var grunden för alla kolonier och plantager",
       "Europeiska länder sökte nya sätt att utnyttja kolonierna – t.ex. råvaror och marknad – när slavhandel avskaffades",
-      "Slaveri och kolonisering hade ingen koppling – de utvecklades oberoende",
-      "Bara USA koloniserade medan Europa lämnade Afrika och Asien",
+      "Slaveri och kolonisering hade ingen koppling – de utvecklades oberoende av varandra",
+      "Bara USA koloniserade medan Europa lämnade Afrika och Asien helt efter slaveriets slut",
     ],
     correctAnswer:
       "Europeiska länder sökte nya sätt att utnyttja kolonierna – t.ex. råvaror och marknad – när slavhandel avskaffades",
@@ -565,8 +565,8 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     options: [
       "Att bygga skolor och sprida utbildning i eget land",
       "Att ett land tar kontroll över andra territorier och folk, ofta för att utnyttja resurser och marknader",
-      "Att avveckla arméer och lösa konflikter fredligt mellan länder",
-      "Samma som demokrati – att alla folk ska få välja egen regering",
+      "Att avveckla arméer och lösa konflikter fredligt mellan länder utan erövring",
+      "Samma som demokrati – att alla folk ska få välja egen regering utan utomstående makt",
     ],
     correctAnswer:
       "Att ett land tar kontroll över andra territorier och folk, ofta för att utnyttja resurser och marknader",
@@ -576,10 +576,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-imperium",
     question: "Vad är ett imperium?",
     options: [
-      "Ett litet kungarike",
+      "Ett litet kungarike med en kung som styr över ett enda land och ett folk",
       "Ett välde där en stat eller makt styr över flera länder, folk eller territorier",
-      "Ett parlament",
-      "En religiös organisation",
+      "Ett parlament där folkvalda representanter beslutar om lagar i en demokrati",
+      "En religiös organisation som styrs av kyrkan eller en andlig ledare",
     ],
     correctAnswer:
       "Ett välde där en stat eller makt styr över flera länder, folk eller territorier",
@@ -589,10 +589,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-telegraf",
     question: "Vad hade telegrafen för betydelse för nationalismens spridning?",
     options: [
-      "Ingen betydelse – tidningar och brev räckte för att sprida idéer",
+      "Ingen betydelse – tidningar och brev räckte för att sprida idéer redan innan telegrafen",
       "Text kunde sändas snabbt över långa avstånd – budskap och idéer nådde fler",
-      "Telegrafen användes bara i krig för att koordinera arméer",
-      "Den förbjöd tidningar och gjorde att färre kunde läsa nyheter",
+      "Telegrafen användes bara i krig för att koordinera arméer och sända order",
+      "Den förbjöd tidningar och gjorde att färre kunde läsa nyheter och politiska budskap",
     ],
     correctAnswer:
       "Text kunde sändas snabbt över långa avstånd – budskap och idéer nådde fler",
@@ -602,10 +602,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-massdistribuering",
     question: "Vad innebär massdistribuering (t.ex. av tidningar)?",
     options: [
-      "Att skicka brev till en person eller en liten grupp",
+      "Att skicka brev till en person eller en liten grupp utan att nå ut till folket",
       "Att trycka och sprida information till många människor i stort antal",
-      "Att förbjuda böcker och tidningar som regeringen ogillade",
-      "Att endast adeln och de rikaste skulle läsa och få information",
+      "Att förbjuda böcker och tidningar som regeringen ogillade genom censur",
+      "Att endast adeln och de rikaste skulle läsa och få information om politik",
     ],
     correctAnswer:
       "Att trycka och sprida information till många människor i stort antal",
@@ -615,10 +615,10 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     id: "ni-minoritet",
     question: "Vad menas med minoritet i sammanhanget Osmanska riket och nationalism?",
     options: [
-      "Den största folkgruppen som styrde riket och bestämde lagarna",
+      "Den största folkgruppen som styrde riket och bestämde lagarna i huvudstaden",
       "Folkgrupper som inte utgjorde den dominerande gruppen men ofta krävde egen stat eller självstyre",
-      "Endast religiösa ledare som inte tillhörde den officiella religionen",
-      "Handelsmän och köpmän som reste mellan provinserna",
+      "Endast religiösa ledare som inte tillhörde den officiella religionen i imperiet",
+      "Handelsmän och köpmän som reste mellan provinserna och drev handel över gränserna",
     ],
     correctAnswer:
       "Folkgrupper som inte utgjorde den dominerande gruppen men ofta krävde egen stat eller självstyre",
@@ -631,7 +631,7 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
       "Båda enades utan krig genom fredliga förhandlingar och folkomröstningar",
       "Båda var redan enade under medeltiden och behöll bara den gamla ordningen",
       "Nationalistiska rörelser och ledande stater (Preussen respektive Sardinien-Piemonte) enade många småstater till en nation",
-      "Båda enades under fransk ledning efter Napoleons erövringar",
+      "Båda enades under fransk ledning efter Napoleons erövringar och Wienkongressens beslut",
     ],
     correctAnswer:
       "Nationalistiska rörelser och ledande stater (Preussen respektive Sardinien-Piemonte) enade många småstater till en nation",
@@ -643,8 +643,8 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     options: [
       "Man avvek från båda och prioriterade bara jordbruk och traditioner",
       "Länder visade upp sin teknik och kultur – en slags industriell och kulturell tävling mellan nationer",
-      "Endast krig användes för att visa vilket land som var starkast",
-      "Skolan lärde bara språk och historia utan koppling till teknik eller industri",
+      "Endast krig användes för att visa vilket land som var starkast och mest framgångsrikt",
+      "Skolan lärde bara språk och historia utan koppling till teknik eller industriell utveckling",
     ],
     correctAnswer:
       "Länder visade upp sin teknik och kultur – en slags industriell och kulturell tävling mellan nationer",
@@ -656,8 +656,8 @@ export const quizQuestionsNationalism: QuizQuestion[] = [
     options: [
       "Bara för att den smakar gott och är populär överallt i världen",
       "Den används som en del av Italiens nationalism och identitet – att knyta symboler till nationen",
-      "Den har ingen koppling till nationalism utan är bara en maträtt",
-      "Den kom från Frankrike och spreds sedan till Italien",
+      "Den har ingen koppling till nationalism utan är bara en maträtt som råkade bli populär",
+      "Den kom från Frankrike och spreds sedan till Italien genom handel och resor",
     ],
     correctAnswer:
       "Den används som en del av Italiens nationalism och identitet – att knyta symboler till nationen",
