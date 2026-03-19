@@ -5,15 +5,12 @@
  */
 
 import type { QuizTopic } from "@/lib/redis";
+import type { QuizQuestion } from "./quizQuestionTypes";
+import { quizQuestionsIndustrialInstudering } from "./quizIndustrialInstudering";
+import { quizQuestionsNationalismInstudering } from "./quizNationalismInstudering";
 import { quizQuestionsNationalism } from "./quizQuestionsNationalism";
 
-export interface QuizQuestion {
-  id: string;
-  question: string;
-  options: string[];
-  correctAnswer: string;
-  tip?: string;
-}
+export type { QuizQuestion } from "./quizQuestionTypes";
 
 export const quizQuestions: QuizQuestion[] = [
   // —— Begrepp ——
@@ -450,163 +447,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctAnswer: "Ångbåten 1807",
     tip: "Fulton = ångbåt. Transport på vattnet med ångkraft.",
   },
-  // —— Instuderingsfrågor omvandlade till flerval ——
-  {
-    id: "kolonialism_vad",
-    question: "Vad var de europeiska makterna främst ute efter när de erövrade kolonier?",
-    options: [
-      "Råvaror, mark, makt och möjlighet att sälja varor",
-      "Endast att sprida religionen",
-      "Endast att avskaffa slaveri",
-      "Endast att bygga skolor",
-    ],
-    correctAnswer: "Råvaror, mark, makt och möjlighet att sälja varor",
-    tip: "Vad behövde industriländerna? Tänk råvaror, mark och varumarknader.",
-  },
-  {
-    id: "varfor_revolution",
-    question: "Varför kallas det 'industriella revolutionen' trots att det varade i över hundra år?",
-    options: [
-      "Förändringarna var så stora och snabba att samhället förändrades radikalt – därav begreppet revolution",
-      "För att det var ett krig som varade i över hundra år mellan Europas stormakter",
-      "För att alla länder revolutionerade samtidigt och kastade sina kungar på samma dag",
-      "Det är ett misstag i historieböckerna – det hette egentligen bara 'industrialiseringen'",
-    ],
-    correctAnswer: "Förändringarna var så stora och snabba att samhället förändrades radikalt – därav begreppet revolution",
-    tip: "Revolution behöver inte vara kort – det handlar om hur genomgripande förändringen var.",
-  },
-  {
-    id: "historiebruk",
-    question: "Varför skiljer sig historien om den industriella revolutionen mellan t.ex. Storbritannien och Sverige?",
-    options: [
-      "Varje land betonar sin egen roll och sin egen historia – historiebruk",
-      "För att det är olika språk",
-      "För att Sverige inte industrialiserades",
-      "För att bara Storbritannien hade revolution",
-    ],
-    correctAnswer: "Varje land betonar sin egen roll och sin egen historia – historiebruk",
-    tip: "Historiebruk = hur vi använder historien. Varför skriver Sverige och Storbritannien olika?",
-  },
-  {
-    id: "vetenskap_ny_religion",
-    question: "Vad menas med att 'vetenskapen blev den nya religionen'?",
-    options: [
-      "Att förklaringar och tro på framsteg alltmer byggde på vetenskap i stället för bara religion",
-      "Att religion förbjöds helt och alla kyrkor stängdes i Europa under 1800-talet",
-      "Att alla blev ateister och ingen trodde längre på gud eller liv efter döden",
-      "Att kyrkan styrde vetenskapen och bestämde vilka upptäckter som fick publiceras",
-    ],
-    correctAnswer: "Att förklaringar och tro på framsteg alltmer byggde på vetenskap i stället för bara religion",
-    tip: "Vetenskapen gav nya svar på frågor som tidigare religion svarat på.",
-  },
-  {
-    id: "rasindelning",
-    question: "Varför var det viktigt för många europeiska erövrare att dela in människor i raser?",
-    options: [
-      "För att rättfärdiga slaveri, kolonialism och överordning – 'vi är bättre'",
-      "För att hjälpa alla människor lika",
-      "För att avskaffa slaveri",
-      "För att alla skulle få rösträtt",
-    ],
-    correctAnswer: "För att rättfärdiga slaveri, kolonialism och överordning – 'vi är bättre'",
-    tip: "Rasindelning användes för att motivera att vissa grupper skulle styra eller förtrycka andra.",
-  },
-  {
-    id: "fabriker_varfor",
-    question: "Varför kom fabriker och industrier till under den industriella revolutionen?",
-    options: [
-      "Förlagssystem och urbanisering samlade arbetskraft och kapital; ny teknik gjorde fabriksproduktion lönsam",
-      "För att bönder tvingades in i fabriker av kungen och adeln mot sin vilja genom nya lagar",
-      "För att det inte fanns någon annan möjlighet att försörja sig efter krig och pest hade dödat så många",
-      "För att kyrkan krävde det och hotade med bannlysning alla som inte flyttade till städerna",
-    ],
-    correctAnswer: "Förlagssystem och urbanisering samlade arbetskraft och kapital; ny teknik gjorde fabriksproduktion lönsam",
-    tip: "Förlagssystem samlade arbete; urbanisering = fler i städer. Teknik = fabriker lönsamma.",
-  },
-  {
-    id: "uppfinningar_viktiga",
-    question: "Varför var uppfinningar som flygande skytteln, Spinning Jenny och ångmaskinen viktiga för den industriella revolutionen?",
-    options: [
-      "De ökade produktionstakten, minskade kostnader och gjorde fabriksproduktion möjlig",
-      "De användes bara i hemmen och på små bruk utan större betydelse för samhällsutvecklingen",
-      "De var bara viktiga i USA och hade ingen effekt i Europa där allt förblev som förut",
-      "De ersatte all handel och gjorde att ingen behövde importera eller exportera varor längre",
-    ],
-    correctAnswer: "De ökade produktionstakten, minskade kostnader och gjorde fabriksproduktion möjlig",
-    tip: "Uppfinningar = mer producerat, billigare, möjlighet att driva fabriker.",
-  },
-  {
-    id: "bakterier",
-    question: "Varför var det viktigt att forskare upptäckte att det finns bakterier?",
-    options: [
-      "Man kunde bättre förstå och bekämpa sjukdomar och förbättra hälsa och hygien",
-      "För att kunna bygga fler fabriker och driva maskiner effektivare med renare processer",
-      "För att avskaffa slaveri och motivera kolonial expansion i Afrika och Asien",
-      "För att förbättra ångmaskiner och andra kraftkällor så att de gav mer effekt",
-    ],
-    correctAnswer: "Man kunde bättre förstå och bekämpa sjukdomar och förbättra hälsa och hygien",
-    tip: "Bakterier förklarar sjukdomar. Bättre hygien och medicin blev möjliga.",
-  },
-  {
-    id: "snobollseffekt",
-    question: "Vad menas med 'snöbollseffekten' i samband med den industriella revolutionen?",
-    options: [
-      "Att en förändring leder till fler förändringar – orsaker och konsekvenser bygger på varandra",
-      "Att allt bara handlade om vinterkrig och militära konflikter i Norden under 1700-talet",
-      "Att bara ett land industrialiserades och alla andra stater stod helt stilla fram till 1900-talet",
-      "Att revolutionen varade exakt 100 år från 1750 till 1850 och sedan upphörde den helt",
-    ],
-    correctAnswer: "Att en förändring leder till fler förändringar – orsaker och konsekvenser bygger på varandra",
-    tip: "Snöbollseffekt = en sak leder till nästa. Orsaker och konsekvenser i kedjor.",
-  },
-  {
-    id: "usa_industri",
-    question: "Varför kunde USA växa fram som en industristat?",
-    options: [
-      "Råvaror, kapital, invandring, stora marknader och tillgång till teknik och investeringar",
-      "Endast på grund av slaveri och billig arbetskraft i södern som drev hela industrin",
-      "Endast på grund av krig med Storbritannien som gav USA kolonier och handelsmonopol",
-      "Sverige och andra europeiska länder hjälpte till med kapital och teknik genom stora lån",
-    ],
-    correctAnswer: "Råvaror, kapital, invandring, stora marknader och tillgång till teknik och investeringar",
-    tip: "USA hade stora fördelar: råvaror, många människor, stor marknad, teknik.",
-  },
-  {
-    id: "sverige_industrier",
-    question: "Vilka var bland de viktigaste industrierna för Sverige i slutet av 1800-talet och början av 1900-talet?",
-    options: [
-      "Skogsindustri, gruvor, stål och verkstadsindustri, textil",
-      "Endast jordbruk och boskapsskötsel utan industri",
-      "Endast fiske och skeppsbyggeri vid kusterna",
-      "Endast handel och bankverksamhet utan tillverkning",
-    ],
-    correctAnswer: "Skogsindustri, gruvor, stål och verkstadsindustri, textil",
-    tip: "Sverige hade skog, järnmalm, vattenkraft – vilka industrier byggde på det?",
-  },
-  {
-    id: "livet_forandrades",
-    question: "På vilket sätt förändrades livet för många när Sverige industrialiserades?",
-    options: [
-      "Urbanisering, trångboddhet i städer, nya arbetsvillkor, förändrade könsroller och kvinnors roll",
-      "Alla blev rika direkt och fattigdomen försvann helt tack vare de nya fabrikerna",
-      "Ingen förändring i vardagen – livet fortsatte som förr för alla utom kungen och adeln",
-      "Bara bönder påverkades medan stadsborna levde precis som tidigare utan några förändringar",
-    ],
-    correctAnswer: "Urbanisering, trångboddhet i städer, nya arbetsvillkor, förändrade könsroller och kvinnors roll",
-    tip: "Fler flyttade till städer – trångt, nya jobb, kvinnors roll förändrades.",
-  },
-  {
-    id: "emigration_usa",
-    question: "Varför började många svenskar emigrera till USA mot slutet av 1800-talet?",
-    options: [
-      "Fattigdom, brist på jord och arbete, hungerår och förhoppning om bättre liv i USA",
-      "För att USA tvingade dem genom att erövra svenska territorier och kräva flyttning",
-      "För att Sverige förbjöd jordbruk och lade beslag på all mark till förmån för adeln",
-      "Endast av religiösa skäl och för att sprida sin tro i de nya amerikanska delstaterna",
-    ],
-    correctAnswer: "Fattigdom, brist på jord och arbete, hungerår och förhoppning om bättre liv i USA",
-    tip: "Många hade det svårt i Sverige – brist på jord, arbete. USA lockade med möjligheter.",
-  },
+  ...quizQuestionsIndustrialInstudering,
   // —— Från Indi 1 & indi2 (tidslinje, orsaker, uppfinningar, Sverige) ——
   {
     id: "revolution_def",
@@ -949,11 +790,21 @@ export const quizQuestions: QuizQuestion[] = [
 /**
  * Slumpar ordning på frågor och på svarsalternativ.
  * Returnerar ny array; originaldata ändras inte.
- * @param topic - "industriella" eller "nationalism"
+ * @param topic - vilket quiz (inkl. endast instuderingsfrågor)
  */
 export function getShuffledQuestions(topic: QuizTopic): QuizQuestion[] {
-  const source =
-    topic === "nationalism" ? quizQuestionsNationalism : quizQuestions;
+  const source = ((): QuizQuestion[] => {
+    switch (topic) {
+      case "nationalism":
+        return quizQuestionsNationalism;
+      case "industriella-inst":
+        return quizQuestionsIndustrialInstudering;
+      case "nationalism-inst":
+        return quizQuestionsNationalismInstudering;
+      default:
+        return quizQuestions;
+    }
+  })();
   const copied = [...source];
   for (let i = copied.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));

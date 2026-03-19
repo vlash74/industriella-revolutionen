@@ -17,7 +17,11 @@ export function getRedisClient(): Redis | null {
   return redis;
 }
 
-export type QuizTopic = "industriella" | "nationalism";
+export type QuizTopic =
+  | "industriella"
+  | "nationalism"
+  | "industriella-inst"
+  | "nationalism-inst";
 
 export function scoresKey(userId: string, topic: QuizTopic): string {
   return `${KEY_PREFIX}quiz:${userId}:${topic}:scores`;

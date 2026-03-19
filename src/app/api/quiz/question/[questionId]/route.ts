@@ -1,11 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { redisGetQuestionHistory, type QuizTopic } from "@/lib/redis";
-
-function parseTopic(t: string | null): QuizTopic {
-  if (t === "nationalism") return "nationalism";
-  return "industriella";
-}
+import { redisGetQuestionHistory } from "@/lib/redis";
+import { parseQuizTopic } from "@/lib/parseQuizTopic";
 
 export async function GET(
   request: Request,
@@ -18,7 +14,7 @@ export async function GET(
     return NextResponse.json({ history: [] });
   }
   const { searchParams } = new URL(request.url);
-  const topic = parseTopic(searchParams.get("topic"));
+  const topic = parseQuizTopic(searchParams.get("topic"));
   const history = await redisGetQuestionHistory(userId, topic, questionId);
   return NextResponse.json({ history });
 }

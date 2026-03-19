@@ -1,6 +1,6 @@
 # Industriella revolutionen – Quiz
 
-Instuderingsquiz till provet (Sol Nova 8, Historia, s. 67–108). Flervalsfrågor från begreppslistan och instuderingsfrågorna. Frågorna och svarsalternativen roteras varje gång du startar quizet.
+Instuderingsquiz till provet (Sol Nova 8, Historia). Flervalsfrågor från begreppslistan och instuderingsfrågorna. Du kan välja **alla frågor** eller **bara instuderingsfrågor** (kortare quiz utan begrepp, personer, Indi-lappar m.m.). Frågorna och svarsalternativen roteras varje gång du startar quizet.
 
 ## Köra lokalt
 
@@ -35,7 +35,11 @@ Om variablerna saknas returnerar API:erna tom data (quizet fungerar fortfarande,
 
 ## Innehåll
 
-- **Frågor:** `src/data/quizQuestions.ts` – flervalsfrågor baserade på alla begrepp och instuderingsfrågor.
-- **Quiz-sida:** `src/app/page.tsx` – startskärm, frågor, poäng och resultatskärm.
+- **Frågor (industriella, alla):** `src/data/quizQuestions.ts` – begrepp, personer, instuderingsfrågor, Indi-lappar.
+- **Endast instudering (industriella):** `src/data/quizIndustrialInstudering.ts` – **en flervalsfråga per rad/uppgift** i `docs/4. Instuderingsfrågor - industriella revolutionen - vt.26 (1).txt` (A/B = två frågor).
+- **Endast instudering (nationalism):** `src/data/quizNationalismInstudering.ts` – **en flervalsfråga per uppgift** i `docs/Instuderingsfrågor - Nationalism & Imperialism.txt` (bänkdiskussion s. 127 utelämnad; bildfråga s. 119 som text om Margherita).
+- **Nationalism (alla frågor):** `src/data/quizQuestionsNationalism.ts` inkl. samma instuderingsblock som sprids in (övrigt innehåll finns kvar).
+- **Gemensam typ:** `src/data/quizQuestionTypes.ts`
+- **Quiz-sida:** `src/app/page.tsx` – val av ämne och omfång, frågor, poäng.
 
-Fler frågor läggs enkelt till i `quizQuestions.ts`.
+Progress i Redis sparas per **ämne och omfång** (t.ex. industriella vs industriella instudering).

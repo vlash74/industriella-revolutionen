@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import {
   getShuffledQuestions,
   type QuizQuestion,
@@ -39,7 +39,15 @@ export default function QuizPage() {
   const [userChecked, setUserChecked] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
   const [nameInput, setNameInput] = useState("");
-  const [topic, setTopic] = useState<QuizTopic>("industriella");
+  const [subject, setSubject] = useState<"industriella" | "nationalism">(
+    "industriella"
+  );
+  /** Endast instuderings-/begreppslistefrågor, inte kapitelfrågor m.m. */
+  const [instOnly, setInstOnly] = useState(false);
+  const topic = useMemo((): QuizTopic => {
+    if (!instOnly) return subject;
+    return subject === "nationalism" ? "nationalism-inst" : "industriella-inst";
+  }, [subject, instOnly]);
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
@@ -318,13 +326,19 @@ export default function QuizPage() {
 
   if (!started) {
     const topicTitle =
-      topic === "nationalism"
+      subject === "nationalism"
         ? "Nationalism & imperialism"
         : "Industriella revolutionen";
-    const topicSub =
-      topic === "nationalism"
-        ? "Sol Nova 8, nationalism s. 110–127, imperialism s. 128–155"
-        : "Sol Nova 8, s. 67–108";
+    const topicSub = (() => {
+      if (subject === "nationalism") {
+        return instOnly
+          ? "Endast begreppslista & instuderingsfrågor (s. 110–155)"
+          : "Sol Nova 8, nationalism s. 110–127, imperialism s. 128–155 – alla frågor";
+      }
+      return instOnly
+        ? "Endast instuderingsfrågor från läroboken (s. 67–108)"
+        : "Sol Nova 8, s. 67–108 – alla frågor (begrepp, personer, Indi m.m.)";
+    })();
     return (
       <main className="min-h-screen flex flex-col items-center justify-center p-6 bg-[var(--bg)]">
         <div className="max-w-lg w-full rounded-2xl bg-[var(--card)] border border-white/10 p-8 shadow-xl text-center">
@@ -332,12 +346,12 @@ export default function QuizPage() {
             Instuderingsquiz
           </h1>
           <p className="text-sm text-[var(--text-muted)] mb-4">Välj ämne</p>
-          <div className="flex gap-2 mb-6">
+          <div className="flex gap-2 mb-4">
             <button
               type="button"
-              onClick={() => setTopic("industriella")}
+              onClick={() => setSubject("industriella")}
               className={`flex-1 py-3 px-4 rounded-xl border-2 text-sm font-medium transition ${
-                topic === "industriella"
+                subject === "industriella"
                   ? "border-[var(--accent)] bg-[var(--accent)]/20 text-white"
                   : "border-white/20 text-[var(--text-muted)] hover:border-white/40"
               }`}
@@ -346,9 +360,9 @@ export default function QuizPage() {
             </button>
             <button
               type="button"
-              onClick={() => setTopic("nationalism")}
+              onClick={() => setSubject("nationalism")}
               className={`flex-1 py-3 px-4 rounded-xl border-2 text-sm font-medium transition ${
-                topic === "nationalism"
+                subject === "nationalism"
                   ? "border-[var(--accent)] bg-[var(--accent)]/20 text-white"
                   : "border-white/20 text-[var(--text-muted)] hover:border-white/40"
               }`}
@@ -356,11 +370,36 @@ export default function QuizPage() {
               Nationalism & imperialism
             </button>
           </div>
+          <p className="text-xs text-[var(--text-muted)] mb-2 text-left">Omfång</p>
+          <div className="flex gap-2 mb-6">
+            <button
+              type="button"
+              onClick={() => setInstOnly(false)}
+              className={`flex-1 py-3 px-3 rounded-xl border-2 text-xs sm:text-sm font-medium transition ${
+                !instOnly
+                  ? "border-[var(--accent)] bg-[var(--accent)]/20 text-white"
+                  : "border-white/20 text-[var(--text-muted)] hover:border-white/40"
+              }`}
+            >
+              Alla frågor
+            </button>
+            <button
+              type="button"
+              onClick={() => setInstOnly(true)}
+              className={`flex-1 py-3 px-3 rounded-xl border-2 text-xs sm:text-sm font-medium transition ${
+                instOnly
+                  ? "border-[var(--accent)] bg-[var(--accent)]/20 text-white"
+                  : "border-white/20 text-[var(--text-muted)] hover:border-white/40"
+              }`}
+            >
+              Bara instuderingsfrågor
+            </button>
+          </div>
           <p className="text-[var(--text-muted)] mb-1">{topicTitle}</p>
           <p className="text-sm text-[var(--text-muted)] mb-6">{topicSub}</p>
           <p className="text-sm text-[var(--text-muted)] mb-6">
             Frågorna och svarsalternativen roteras varje gång du startar – så du
-            tränar i olika ordning. Progress sparas per ämne i molnet.
+            tränar i olika ordning. Progress sparas per ämne och omfång i molnet.
           </p>
           {userId && (
             <div className="mb-6 text-left rounded-xl bg-white/5 border border-white/10 p-4">

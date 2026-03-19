@@ -1,11 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { redisSaveQuestionResult, type QuizTopic } from "@/lib/redis";
-
-function parseTopic(t: string | null | undefined): QuizTopic {
-  if (t === "nationalism") return "nationalism";
-  return "industriella";
-}
+import { redisSaveQuestionResult } from "@/lib/redis";
+import { parseQuizTopic } from "@/lib/parseQuizTopic";
 
 export async function POST(request: Request) {
   const cookieStore = await cookies();
@@ -23,7 +19,7 @@ export async function POST(request: Request) {
   if (!questionId || typeof correct !== "boolean") {
     return NextResponse.json({ error: "questionId och correct krävs" }, { status: 400 });
   }
-  const topic = parseTopic(topicParam);
+  const topic = parseQuizTopic(topicParam);
   const history = await redisSaveQuestionResult(userId, topic, questionId, correct);
   return NextResponse.json({ history });
 }
